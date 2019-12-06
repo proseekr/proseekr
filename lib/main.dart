@@ -38,7 +38,7 @@ class _psHomePageState extends State<psHomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Image.asset(
-              'assets/images/children_with_bananas.jpg',
+              'assets/images/children_with_bananas_lq.jpg',
             ),
             Padding(padding: EdgeInsets.only(bottom: 24.0)),
             Text(
