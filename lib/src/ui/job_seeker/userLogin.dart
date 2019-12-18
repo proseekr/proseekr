@@ -28,7 +28,6 @@ class _UserLoginState extends State<UserLogin> {
   @override
   Widget build(BuildContext context) {
     TextStyle style = TextStyle(fontSize: 18.0);
-    // TODO: implement build
     final usernameField = TextField(
       obscureText: false,
       style: style,
