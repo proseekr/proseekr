@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
-import "package:proseekr/userLogin.dart";
+import 'package:proseekr/src/ui/job_seeker/userLogin.dart';
 
-import "tempForm.dart";
+import 'job_seeker/userRegistration.dart';
 
 enum SelectedActor { JobProvider, JobSeeker }
 
@@ -45,7 +45,7 @@ class _ActorSelectorState extends State<ActorSelector> {
             padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
             onPressed: () {
               print("UserRegistration called");
-              if (_character == "Job Provider") {
+              if (_character == SelectedActor.JobProvider) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => UserRegistration()),
