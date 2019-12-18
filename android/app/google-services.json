@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "564911788983",
+    "firebase_url": "https://b4di-b4d4c.firebaseio.com",
+    "project_id": "b4di-b4d4c",
+    "storage_bucket": "b4di-b4d4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:564911788983:android:65642ae79aa47a32690e32",
+        "android_client_info": {
+          "package_name": "com.proseekr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "564911788983-dm3qcvrgskj3egsp61cblsnm4op6o2uv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDuu9YMHmqlZ_TIMUn7OCTMjfcC4g2JK4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "564911788983-dm3qcvrgskj3egsp61cblsnm4op6o2uv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
