@@ -1,20 +1,23 @@
-import 'package:flutter/material.dart';
-import 'forms.dart';
-import 'tempForm.dart';
+import "package:flutter/material.dart";
+import "package:proseekr/userLogin.dart";
+
+import "tempForm.dart";
+
 enum SelectedActor { JobProvider, JobSeeker }
-class psSignupin extends StatefulWidget{
-  psSignupin({Key key, this.title}) : super(key: key);
+
+class ActorSelector extends StatefulWidget {
+  ActorSelector({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _psSignupinState createState() => _psSignupinState();
+  _ActorSelectorState createState() => _ActorSelectorState();
 }
-class _psSignupinState extends State<psSignupin>{
 
+class _ActorSelectorState extends State<ActorSelector> {
   SelectedActor _character = SelectedActor.JobProvider;
   Widget build(BuildContext context) {
-    final Signin = Material(
+    final signIn = Material(
         elevation: 5.0,
         borderRadius: BorderRadius.circular(30.0),
         color: Colors.black,
@@ -24,17 +27,16 @@ class _psSignupinState extends State<psSignupin>{
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => signin()),
+                MaterialPageRoute(builder: (context) => UserLogin()),
               );
             },
-            child: Text("Sign-in",
+            child: Text(
+              "Sign-in",
               textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.bold),
-            )
-        )
-    );
-    final Signup = Material(
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            )));
+    final signUp = Material(
         elevation: 5.0,
         borderRadius: BorderRadius.circular(30.0),
         color: Colors.black,
@@ -42,27 +44,25 @@ class _psSignupinState extends State<psSignupin>{
             minWidth: MediaQuery.of(context).size.width,
             padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
             onPressed: () {
-              print('signup called');
-              if(_character=='Job Provider') {
+              print("UserRegistration called");
+              if (_character == "Job Provider") {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => signup()),
+                  MaterialPageRoute(builder: (context) => UserRegistration()),
                 );
-              }
-              else{
+              } else {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => signup()),
+                  MaterialPageRoute(builder: (context) => UserRegistration()),
                 );
               }
             },
-            child: Text("Sign-up",
+            child: Text(
+              "Sign-up",
               textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.bold),
-            )
-        )
-    );
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            )));
     return Scaffold(
       backgroundColor: Colors.amber[200],
       body: Center(
@@ -70,61 +70,66 @@ class _psSignupinState extends State<psSignupin>{
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Image.asset(
-              'assets/images/children_with_bananas_lq.jpg',
+              "assets/images/children_with_bananas_lq.jpg",
             ),
             Padding(padding: EdgeInsets.only(bottom: 24.0)),
 //            Padding(padding: EdgeInsets.only(bottom: 190.0)),
             Text(
-              'ProSeekr',
+              "ProSeekr",
               style: TextStyle(fontSize: 48),
             ),
             Text(
-              'A job portal for blue-collars',
+              "A job portal for blue-collars",
               style: TextStyle(fontSize: 18),
             ),
             Padding(padding: EdgeInsets.only(bottom: 14.0)),
-             Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                 Radio(
+                Radio(
                   value: SelectedActor.JobProvider,
                   groupValue: _character,
                   onChanged: (SelectedActor value) {
-                    setState(() { _character = value; print(_character); });
+                    setState(() {
+                      _character = value;
+                      print(_character);
+                    });
                   },
                 ),
-                 Text(
-                  'Job Provider',
+                Text(
+                  "Job Provider",
                   style: new TextStyle(fontSize: 16.0),
                 ),
-                 Radio(
+                Radio(
                   value: SelectedActor.JobSeeker,
                   groupValue: _character,
                   onChanged: (SelectedActor value) {
-                    setState(() { _character = value; print(_character); });
+                    setState(() {
+                      _character = value;
+                      print(_character);
+                    });
                   },
                 ),
-                 Text(
-                  'Job Seeker',
+                Text(
+                  "Job Seeker",
                   style: new TextStyle(
                     fontSize: 16.0,
                   ),
                 ),
-
               ],
             ),
             Padding(padding: EdgeInsets.only(bottom: 50.0)),
-             Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Signin,
+                signIn,
               ],
             ),
             Padding(padding: EdgeInsets.only(bottom: 50.0)),
-             Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Signup,
+                signUp,
               ],
             )
           ],
@@ -133,4 +138,3 @@ class _psSignupinState extends State<psSignupin>{
     );
   }
 }
-
