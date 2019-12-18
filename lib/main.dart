@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proseekr/src/ui/PsLanguagePreferences.dart';
+import 'package:proseekr/src/ui/languagePreferences.dart';
 
 void main() => runApp(ProSeekerApp());
 
@@ -9,7 +9,7 @@ class ProSeekerApp extends StatelessWidget {
     return MaterialApp(
       title: 'ProSeekr',
       debugShowCheckedModeBanner: false,
-      home: PsLanguagePreferences(title: 'Home Page'),
+      home: LanguagePreferences(title: 'Language Preferences'),
     );
   }
 }
