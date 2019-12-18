@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:keyboard_avoider/keyboard_avoider.dart';
 
-import 'credentials.dart';
-import 'globals.dart' as globals;
+import '../../resources/globals.dart' as globals;
+import 'userCredentials.dart';
 
 class UserRegistration extends StatefulWidget {
   UserRegistration({Key key, this.title}) : super(key: key);
@@ -81,7 +81,6 @@ class _UserRegistrationState extends State<UserRegistration> {
     }
 
     bool _autoValidate = false;
-    // TODO: implement build
 
     return Scaffold(
         backgroundColor: Colors.grey[250],
