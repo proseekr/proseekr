@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:keyboard_avoider/keyboard_avoider.dart';
 
-import 'globals.dart' as globals;
+import '../../resources/globals.dart' as globals;
 
 class Credentials extends StatefulWidget {
   Credentials({Key key, this.title}) : super(key: key);
