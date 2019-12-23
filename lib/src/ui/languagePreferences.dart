@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:proseekr/src/resources/languagePreferencesController.dart';
-import 'package:proseekr/src/ui/job_seeker/userRegistration.dart';
+import 'actorSelector.dart';
 
 class LanguagePreferences extends StatefulWidget {
   LanguagePreferences({Key key, this.title}) : super(key: key);
@@ -36,7 +36,7 @@ class _LanguagePreferencesState extends State<LanguagePreferences> {
     } else {
       print("else-initState");
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => UserRegistration()));
+          context, MaterialPageRoute(builder: (context) => ActorSelector()));
     }
   }
 
@@ -69,7 +69,7 @@ class _LanguagePreferencesState extends State<LanguagePreferences> {
       print("Home page mounted");
     }
     return Scaffold(
-      backgroundColor: Colors.amber[200],
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -80,6 +80,7 @@ class _LanguagePreferencesState extends State<LanguagePreferences> {
             SizedBox(
               height: 24.0,
             ),
+            Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.03)),
             Text(
               'ProSeekr',
               style: TextStyle(fontSize: 48),
@@ -113,13 +114,13 @@ class _LanguagePreferencesState extends State<LanguagePreferences> {
                         shape: ContinuousRectangleBorder(),
                         margin: EdgeInsets.all(0),
                         color: index % 2 == 0
-                            ? Colors.amber[500]
-                            : Colors.amber[400],
+                            ? Colors.grey[900]
+                            : Colors.grey[800],
                         child: ListTile(
                           contentPadding: EdgeInsets.only(left: 24),
                           title: Text(
                             _availableLanguages[index],
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(fontSize: 20, color: Colors.white),
                           ),
                           onTap: () {
                             _updatePrefLangState(_availableLanguages[index]);
@@ -132,11 +133,11 @@ class _LanguagePreferencesState extends State<LanguagePreferences> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
-        foregroundColor: Colors.amber[500],
+        foregroundColor: Colors.white,
         child: Icon(Icons.keyboard_arrow_right),
         onPressed: () => Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => UserRegistration()),
+          MaterialPageRoute(builder: (context) => ActorSelector()),
         ),
       ),
     );

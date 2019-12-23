@@ -1,7 +1,8 @@
 import "package:flutter/material.dart";
-import 'package:proseekr/src/ui/job_seeker/userLogin.dart';
+import 'package:proseekr/src/ui/job_povider/userLogin.dart';
 
-import 'job_seeker/userRegistration.dart';
+import 'job_povider/userRegistration.dart';
+import 'job_seeker/seekerRegistration.dart';
 
 enum SelectedActor { JobProvider, JobSeeker }
 
@@ -53,7 +54,7 @@ class _ActorSelectorState extends State<ActorSelector> {
               } else {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => UserRegistration()),
+                  MaterialPageRoute(builder: (context) => SeekerRegistration()),
                 );
               }
             },
@@ -64,7 +65,7 @@ class _ActorSelectorState extends State<ActorSelector> {
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             )));
     return Scaffold(
-      backgroundColor: Colors.amber[200],
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

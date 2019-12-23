@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:keyboard_avoider/keyboard_avoider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import '../../../src/resources/globals.dart' as globals;
+import 'imageUpload.dart';
 
-import '../../resources/globals.dart' as globals;
-import 'userCredentials.dart';
-
-class UserRegistration extends StatefulWidget {
-  UserRegistration({Key key, this.title}) : super(key: key);
+class UserRegistration extends StatefulWidget{
+  UserRegistration({Key Key, this.title}) : super(key: Key);
   final String title;
 
   @override
   _UserRegistrationState createState() => _UserRegistrationState();
 }
 
-class _UserRegistrationState extends State<UserRegistration> {
+class _UserRegistrationState extends State<UserRegistration>{
+
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextStyle style = TextStyle(fontSize: 14.0);
+  TextStyle style = TextStyle( fontSize: 14.0);
   final TextEditingController _firstNameFilter = new TextEditingController();
   final TextEditingController _lastNameFilter = new TextEditingController();
 
@@ -27,8 +27,10 @@ class _UserRegistrationState extends State<UserRegistration> {
 
   final TextEditingController _contactFilter = new TextEditingController();
   final TextEditingController _emailFilter = new TextEditingController();
+  List<String> _genders = ['Male', 'Female', 'Others'];
+  String _selectedGender;
 
-  void dispose() {
+  void dispose(){
     _firstNameFilter.dispose();
     _lastNameFilter.dispose();
     _storeNameFilter.dispose();
@@ -43,13 +45,9 @@ class _UserRegistrationState extends State<UserRegistration> {
 
   @override
   Widget build(BuildContext context) {
+
     String _validateEmail(String value) {
       print("email validator called");
-//      if (value.isEmpty) {
-//        // The form is empty
-//        return "Enter email address";
-//      }
-      // This is just a regular expression for email addresses
       String p = "[a-zA-Z0-9\+\.\_\%\-\+]{1,256}" +
           "\\@" +
           "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
@@ -68,6 +66,15 @@ class _UserRegistrationState extends State<UserRegistration> {
       return 'Email is not valid';
     }
 
+    String _phoneNumberValidator(String value) {
+      Pattern pattern =
+          r'^(?:[+0]9)?[0-9]{10}$';
+      RegExp regex = new RegExp(pattern);
+      if (value.isEmpty || !regex.hasMatch(value))
+        return 'Enter Valid Phone Number';
+      else
+        return null;
+    }
     void _showDialog() {
       // flutter defined function
       Fluttertoast.showToast(
@@ -77,15 +84,18 @@ class _UserRegistrationState extends State<UserRegistration> {
           timeInSecForIos: 1,
           backgroundColor: Colors.black,
           textColor: Colors.white,
-          fontSize: 16.0);
+          fontSize: 16.0
+      );
     }
 
     bool _autoValidate = false;
+    // TODO: implement build
 
     return Scaffold(
         backgroundColor: Colors.grey[250],
         appBar: AppBar(
           title: Text("proseekr"),
+
         ),
         body: Container(
           padding: EdgeInsets.all(20),
@@ -101,24 +111,25 @@ class _UserRegistrationState extends State<UserRegistration> {
                     children: <Widget>[
                       Padding(padding: EdgeInsets.all(globals.paddingValue)),
                       Center(
-                        child: Text("PERSONAL INFORMATION", style: style),
+                        child: Text(
+                            "PERSONAL INFORMATION",
+                            style:style
+                        ),
                       ),
                       Padding(padding: EdgeInsets.all(globals.paddingValue)),
                       Row(
                         children: <Widget>[
                           Expanded(
-                            child: TextFormField(
+                            child:TextFormField(
                               obscureText: false,
                               style: style,
                               controller: _firstNameFilter,
                               decoration: InputDecoration(
-                                  prefixIcon: new Icon(Icons.person),
-                                  contentPadding: EdgeInsets.fromLTRB(
-                                      20.0, 15.0, 20.0, 15.0),
+                                  prefixIcon:new Icon(Icons.person),
+                                  contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                                   hintText: "First Name",
-                                  border: OutlineInputBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(32.0))),
+                                  border:
+                                  OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
                               validator: (value) {
                                 print('validator called');
                                 if (value.isEmpty) {
@@ -126,24 +137,20 @@ class _UserRegistrationState extends State<UserRegistration> {
                                 }
                                 return null;
                               },
-                            ),
-                          ),
-                          Padding(
-                              padding: EdgeInsets.all(globals.paddingValue)),
+                            ),),
+                          Padding(padding: EdgeInsets.all(globals.paddingValue)),
                           Expanded(
-                            child: SingleChildScrollView(
+                            child:SingleChildScrollView(
                               child: TextFormField(
                                 obscureText: false,
                                 style: style,
                                 controller: _lastNameFilter,
                                 decoration: InputDecoration(
-                                    prefixIcon: new Icon(Icons.person),
-                                    contentPadding: EdgeInsets.fromLTRB(
-                                        20.0, 15.0, 20.0, 15.0),
+                                    prefixIcon:new Icon(Icons.person),
+                                    contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                                     hintText: "Last Name",
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(32.0))),
+                                    border:
+                                    OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
                                 validator: (value) {
                                   print('validator called');
                                   if (value.isEmpty) {
@@ -152,13 +159,42 @@ class _UserRegistrationState extends State<UserRegistration> {
                                   return null;
                                 },
                               ),
-                            ),
-                          ),
+                            ),),
                         ],
                       ),
                       Padding(padding: EdgeInsets.all(globals.paddingValue)),
                       Center(
-                        child: Text("STORE ADDRESS", style: style),
+                          child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: 10.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(32.0),
+                              border: Border.all(
+                                  color: Colors.black, style: BorderStyle.solid, width: 0.80),
+                            ),
+                            child: DropdownButton(
+                              hint: Text('Please choose a gender'), // Not necessary for Option 1
+                              value: _selectedGender,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _selectedGender = newValue;
+                                  globals.obj.setGender(_selectedGender);
+                                });
+                              },
+                              items: _genders.map((gender) {
+                                return DropdownMenuItem(
+                                  child: new Text(gender),
+                                  value: gender,
+                                );
+                              }).toList(),
+                            ),
+                          )
+                      ),
+                      Padding(padding: EdgeInsets.all(globals.paddingValue)),
+                      Center(
+                        child: Text(
+                            "STORE ADDRESS",
+                            style: style
+                        ),
                       ),
                       Padding(padding: EdgeInsets.all(globals.paddingValue)),
                       TextFormField(
@@ -166,12 +202,11 @@ class _UserRegistrationState extends State<UserRegistration> {
                         style: style,
                         controller: _storeNameFilter,
                         decoration: InputDecoration(
-                            prefixIcon: new Icon(Icons.store),
-                            contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                            prefixIcon:new Icon(Icons.store),
+                            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                             hintText: "Store Name",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(32.0))),
+                            border:
+                            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
                         validator: (value) {
                           print('validator called');
                           if (value.isEmpty) {
@@ -186,12 +221,11 @@ class _UserRegistrationState extends State<UserRegistration> {
                         style: style,
                         controller: _address1Filter,
                         decoration: InputDecoration(
-                            prefixIcon: new Icon(Icons.home),
-                            contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                            prefixIcon:new Icon(Icons.home),
+                            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                             hintText: "Address Line 1",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(32.0))),
+                            border:
+                            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
                         validator: (value) {
                           print('validator called');
                           if (value.isEmpty) {
@@ -206,12 +240,11 @@ class _UserRegistrationState extends State<UserRegistration> {
                         style: style,
                         controller: _cityFilter,
                         decoration: InputDecoration(
-                            prefixIcon: new Icon(Icons.location_on),
-                            contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                            prefixIcon:new Icon(Icons.location_on),
+                            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                             hintText: "City",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(32.0))),
+                            border:
+                            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
                         validator: (value) {
                           print('validator called');
                           if (value.isEmpty) {
@@ -226,12 +259,11 @@ class _UserRegistrationState extends State<UserRegistration> {
                         style: style,
                         controller: _stateFilter,
                         decoration: InputDecoration(
-                            prefixIcon: new Icon(Icons.location_on),
-                            contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                            prefixIcon:new Icon(Icons.location_on),
+                            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                             hintText: "State",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(32.0))),
+                            border:
+                            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
                         validator: (value) {
                           print('validator called');
                           if (value.isEmpty) {
@@ -244,15 +276,14 @@ class _UserRegistrationState extends State<UserRegistration> {
                       TextFormField(
                         obscureText: false,
                         style: style,
-                        keyboardType: TextInputType.number,
+                        keyboardType:TextInputType.number,
                         controller: _pincodeFilter,
                         decoration: InputDecoration(
-                            prefixIcon: new Icon(Icons.location_on),
-                            contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                            prefixIcon:new Icon(Icons.location_on),
+                            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                             hintText: "Pincode",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(32.0))),
+                            border:
+                            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
                         validator: (value) {
                           print('validator called');
                           if (value.isEmpty) {
@@ -262,24 +293,27 @@ class _UserRegistrationState extends State<UserRegistration> {
                         },
                       ),
                       Padding(padding: EdgeInsets.all(globals.paddingValue)),
-                      Center(child: Text("CONTACT INFORMATION", style: style)),
+                      Center(
+                          child: Text(
+                              "CONTACT INFORMATION",
+                              style: style
+                          )),
                       Padding(padding: EdgeInsets.all(globals.paddingValue)),
                       TextFormField(
                         obscureText: false,
                         style: style,
-                        keyboardType: TextInputType.number,
+                        keyboardType:TextInputType.number,
                         controller: _contactFilter,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.phone),
-                            contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                             hintText: "Contact",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(32.0))),
+                            border:
+                            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
                         validator: (value) {
                           print('validator called');
-                          if (value.isEmpty) {
-                            return 'Please enter some text';
+                          if (!value.isEmpty) {
+                            return _phoneNumberValidator(value);
                           }
                           return null;
                         },
@@ -292,60 +326,65 @@ class _UserRegistrationState extends State<UserRegistration> {
                         controller: _emailFilter,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.email),
-                            contentPadding: EdgeInsets.all(
-                                MediaQuery.of(context).size.width * 0.04),
+                            contentPadding: EdgeInsets.all(MediaQuery.of(context).size.width*0.04)  ,
                             hintText: "Email",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(32.0))),
+                            border:
+                            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
                         validator: (value) {
-                          if (value.length > 0) {
-                            return _validateEmail(value);
+
+                          if (!value.isEmpty) {
+                            return  _validateEmail(value);
                           }
                           return null;
                         },
                       ),
                       Padding(padding: EdgeInsets.all(globals.paddingValue)),
                       Material(
+
                         elevation: 5.0,
                         borderRadius: BorderRadius.circular(30.0),
                         color: Colors.black,
                         child: MaterialButton(
-                          minWidth: MediaQuery.of(context).size.width * 0.3,
+                          minWidth: MediaQuery.of(context).size.width*0.3,
                           padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+
                           onPressed: () {
-                            if (_formKey.currentState.validate()) {
+                            if(_formKey.currentState.validate()){
                               globals.obj.setFirstName(_firstNameFilter.text);
                               globals.obj.setLastName(_lastNameFilter.text);
                               globals.obj.setStoreName(_storeNameFilter.text);
                               globals.obj.setAddressLine(_address1Filter.text);
                               globals.obj.setCity(_cityFilter.text);
                               globals.obj.setState(_stateFilter.text);
-                              globals.obj.setPinCode(_pincodeFilter.text);
+                              globals.obj.setPincode(_pincodeFilter.text);
                               globals.obj.setContact(_contactFilter.text);
                               globals.obj.setEmail(_emailFilter.text);
 
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) => Credentials()),
+                                MaterialPageRoute(builder: (context) => ImageUpload()),
                               );
 //                              print('No error');
-                            } else {
+                            }
+                            else {
                               _showDialog();
                             }
+
                           },
                           child: Text("Next",
                               textAlign: TextAlign.center,
                               style: style.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold)),
+                                  color: Colors.white, fontWeight: FontWeight.bold)),
                         ),
                       ),
+
                       Padding(padding: EdgeInsets.all(globals.paddingValue)),
                     ],
-                  ),
-                )),
+                  ),)
+            ),
           ),
-        ));
+        )
+    );
   }
 }
+
