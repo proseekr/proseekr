@@ -1,0 +1,47 @@
+{
+  "app_title": "प्रोसीकर",
+  "app_description": "अब काम का तलाश, बना आसान !",
+  "select_your_language": "भाषा चूने",
+
+  "job_provider": "संभरक",
+  "job_seeker": "अन्वेषक",
+  "login": "सत्रारंभ",
+  "register": "दर्ज करें",
+  "logout": "",
+
+  "first_name": "पहला नाम",
+  "last_name": "उप नाम",
+  "email": "ईमेल",
+  "contact": "फ़ोन नंबर",
+  "gender": "लिंग",
+  "male": "पुरुष",
+  "female":  "स्त्री",
+  "others": "अन्य",
+
+  "store_name": "दुकान नाम",
+  "address_line": "पता",
+  "city":  "शहर",
+  "state": "राज्य",
+  "pin_code": "पिन कोड",
+
+  "qualification": "योग्यता",
+  "category": "श्रेणी",
+  "expertise": "निपुणता",
+  "experience": "अनुभव",
+
+  "description": "विवरण",
+  "salary": "वेतन",
+  "work_hours": "कार्य समय",
+  "posted_on": "को प्रविष्ट किया हुआ",
+  "details":  "अधिक जानकारी",
+  "location": "स्थान",
+  "ends_on": "दरख्वास्त समाप्त होता है",
+  "apply": "दरख्वास्त करे",
+  "withdraw": "दरख्वास्त वापिस ले",
+
+  "search_jobs": "काम ढूंढो",
+
+  "continue": "आगे बढ़ें",
+  "cancel":  "रद्ध करो",
+  "all_fields_are_required": "सब कुछ भरना आवश्यक है"
+}

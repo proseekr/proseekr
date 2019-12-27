@@ -1,0 +1,51 @@
+{
+  "app_title": "Proseeker",
+  "app_description": "A job portal for blue-collars",
+  "select_your_language": "Select your language",
+
+  "job_provider": "Job Provider",
+  "job_seeker": "Job Seeker",
+  "login": "Login",
+  "register": "Register",
+  "logout": "logout",
+
+  "your_details":" Your details",
+  "first_name": "First Name",
+  "last_name": "Last Name",
+  "email": "Email",
+  "contact": "Phone Number",
+  "gender": "Gender",
+  "male": "Male",
+  "female":  "Female",
+  "others": "Others",
+
+  "store_details":  "Store details",
+  "store_name": "Store Name",
+  "address": "address",
+  "address_line": "Address Line",
+  "city":  "City",
+  "state": "State",
+  "pin_code": "Pincode",
+
+
+  "qualification": "Qualification",
+  "category": "Category",
+  "expertise": "Expertise",
+  "experience": "Experience",
+
+  "description": "",
+  "salary": "Salary",
+  "work_hours": "Work Hours",
+  "posted_on": "Posted on",
+  "details":  "Details",
+  "location": "Location",
+  "ends_on": "Ends on",
+  "apply": "Apply",
+  "withdraw": "Withdraw",
+
+  "search_jobs": "Search jobs",
+
+  "continue": "CONTINUE",
+  "cancel":  "CANCEL",
+  "all_fields_are_required": "All fields are required"
+}
