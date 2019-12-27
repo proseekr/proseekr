@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:proseekr/src/ui/languagePreferences.dart';
+import 'package:proseekr/app.dart';
 
-void main() => runApp(ProSeekerApp());
+void main() {
+  print("App started");
+  runApp(App());
+}
 
-class ProSeekerApp extends StatelessWidget {
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ProSeekr',
       debugShowCheckedModeBanner: false,
-      home: LanguagePreferences(title: 'Language Preferences'),
+      title: 'ProSeeker',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: ProSeekerApp(),
     );
   }
 }
-
