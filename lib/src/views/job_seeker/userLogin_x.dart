@@ -8,10 +8,10 @@ class UserLogin extends StatefulWidget {
   _UserLoginState createState() => _UserLoginState();
 }
 
-class _LoginData {
-  String username = '';
-  String password = '';
-}
+//class _LoginData {
+//  String username = '';
+//  String password = '';
+//}
 
 class _UserLoginState extends State<UserLogin> {
   final TextEditingController _usernameFilter = new TextEditingController();

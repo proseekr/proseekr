@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:keyboard_avoider/keyboard_avoider.dart';
 
-import '../../resources/globals.dart' as globals;
+import '../../models/globals.dart' as globals;
 
 class Credentials extends StatefulWidget {
   Credentials({Key key, this.title}) : super(key: key);
@@ -57,13 +57,11 @@ class _CredentialsState extends State<Credentials> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
-                          Padding(
-                              padding: EdgeInsets.all(globals.paddingValue)),
+                          Padding(padding: EdgeInsets.all(globals.PADDING)),
                           Center(
                             child: Text("Login", style: style),
                           ),
-                          Padding(
-                              padding: EdgeInsets.all(globals.paddingValue)),
+                          Padding(padding: EdgeInsets.all(globals.PADDING)),
                           TextFormField(
                             obscureText: false,
                             style: style,
@@ -83,8 +81,7 @@ class _CredentialsState extends State<Credentials> {
                               return null;
                             },
                           ),
-                          Padding(
-                              padding: EdgeInsets.all(globals.paddingValue)),
+                          Padding(padding: EdgeInsets.all(globals.PADDING)),
                           TextFormField(
                             obscureText: true,
                             style: style,
@@ -104,8 +101,7 @@ class _CredentialsState extends State<Credentials> {
                               return null;
                             },
                           ),
-                          Padding(
-                              padding: EdgeInsets.all(globals.paddingValue)),
+                          Padding(padding: EdgeInsets.all(globals.PADDING)),
                           TextFormField(
                             obscureText: true,
                             style: style,
@@ -125,8 +121,7 @@ class _CredentialsState extends State<Credentials> {
                               return null;
                             },
                           ),
-                          Padding(
-                              padding: EdgeInsets.all(globals.paddingValue)),
+                          Padding(padding: EdgeInsets.all(globals.PADDING)),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: <Widget>[
@@ -178,8 +173,7 @@ class _CredentialsState extends State<Credentials> {
                                   ),
                                 ),
                               ]),
-                          Padding(
-                              padding: EdgeInsets.all(globals.paddingValue)),
+                          Padding(padding: EdgeInsets.all(globals.PADDING)),
                         ],
                       ),
                     )))));

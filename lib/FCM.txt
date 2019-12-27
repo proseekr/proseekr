@@ -1,0 +1,8 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  _firebaseMessaging.getToken().then((String token) {
+        assert(token != null);
+        setState(() {
+          fcmToken = token;
+        });
+      });

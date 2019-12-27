@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:keyboard_avoider/keyboard_avoider.dart';
 
-import '../../resources/globals.dart' as globals;
-import 'userCredentials.dart';
+import '../../../src/models/globals.dart' as globals;
+import 'imageUpload.dart';
 
 class UserRegistration extends StatefulWidget {
-  UserRegistration({Key key, this.title}) : super(key: key);
+  UserRegistration({Key Key, this.title}) : super(key: Key);
   final String title;
 
   @override
@@ -27,6 +27,8 @@ class _UserRegistrationState extends State<UserRegistration> {
 
   final TextEditingController _contactFilter = new TextEditingController();
   final TextEditingController _emailFilter = new TextEditingController();
+  List<String> _genders = ['Male', 'Female', 'Others'];
+  String _selectedGender;
 
   void dispose() {
     _firstNameFilter.dispose();
@@ -45,11 +47,6 @@ class _UserRegistrationState extends State<UserRegistration> {
   Widget build(BuildContext context) {
     String _validateEmail(String value) {
       print("email validator called");
-//      if (value.isEmpty) {
-//        // The form is empty
-//        return "Enter email address";
-//      }
-      // This is just a regular expression for email addresses
       String p = "[a-zA-Z0-9\+\.\_\%\-\+]{1,256}" +
           "\\@" +
           "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
@@ -66,6 +63,15 @@ class _UserRegistrationState extends State<UserRegistration> {
 
       // The pattern of the email didn't match the regex above.
       return 'Email is not valid';
+    }
+
+    String _phoneNumberValidator(String value) {
+      Pattern pattern = r'^(?:[+0]9)?[0-9]{10}$';
+      RegExp regex = new RegExp(pattern);
+      if (value.isEmpty || !regex.hasMatch(value))
+        return 'Enter Valid Phone Number';
+      else
+        return null;
     }
 
     void _showDialog() {
@@ -99,11 +105,11 @@ class _UserRegistrationState extends State<UserRegistration> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                      Padding(padding: EdgeInsets.all(globals.paddingValue)),
+                      Padding(padding: EdgeInsets.all(globals.PADDING)),
                       Center(
                         child: Text("PERSONAL INFORMATION", style: style),
                       ),
-                      Padding(padding: EdgeInsets.all(globals.paddingValue)),
+                      Padding(padding: EdgeInsets.all(globals.PADDING)),
                       Row(
                         children: <Widget>[
                           Expanded(
@@ -128,8 +134,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                               },
                             ),
                           ),
-                          Padding(
-                              padding: EdgeInsets.all(globals.paddingValue)),
+                          Padding(padding: EdgeInsets.all(globals.PADDING)),
                           Expanded(
                             child: SingleChildScrollView(
                               child: TextFormField(
@@ -156,11 +161,44 @@ class _UserRegistrationState extends State<UserRegistration> {
                           ),
                         ],
                       ),
-                      Padding(padding: EdgeInsets.all(globals.paddingValue)),
+                      Padding(padding: EdgeInsets.all(globals.PADDING)),
+                      Center(
+                          child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(32.0),
+                          border: Border.all(
+                              color: Colors.black,
+                              style: BorderStyle.solid,
+                              width: 0.80),
+                        ),
+                        child: DropdownButton(
+                          elevation: 0,
+                          underline: Container(
+                            height: 0,
+                          ),
+                          hint: Text(
+                              'Please choose a gender'), // Not necessary for Option 1
+                          value: _selectedGender,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _selectedGender = newValue;
+                              globals.obj.setGender(_selectedGender);
+                            });
+                          },
+                          items: _genders.map((gender) {
+                            return DropdownMenuItem(
+                              child: new Text(gender),
+                              value: gender,
+                            );
+                          }).toList(),
+                        ),
+                      )),
+                      Padding(padding: EdgeInsets.all(globals.PADDING)),
                       Center(
                         child: Text("STORE ADDRESS", style: style),
                       ),
-                      Padding(padding: EdgeInsets.all(globals.paddingValue)),
+                      Padding(padding: EdgeInsets.all(globals.PADDING)),
                       TextFormField(
                         obscureText: false,
                         style: style,
@@ -180,7 +218,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                           return null;
                         },
                       ),
-                      Padding(padding: EdgeInsets.all(globals.paddingValue)),
+                      Padding(padding: EdgeInsets.all(globals.PADDING)),
                       TextFormField(
                         obscureText: false,
                         style: style,
@@ -200,7 +238,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                           return null;
                         },
                       ),
-                      Padding(padding: EdgeInsets.all(globals.paddingValue)),
+                      Padding(padding: EdgeInsets.all(globals.PADDING)),
                       TextFormField(
                         obscureText: false,
                         style: style,
@@ -220,7 +258,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                           return null;
                         },
                       ),
-                      Padding(padding: EdgeInsets.all(globals.paddingValue)),
+                      Padding(padding: EdgeInsets.all(globals.PADDING)),
                       TextFormField(
                         obscureText: false,
                         style: style,
@@ -240,7 +278,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                           return null;
                         },
                       ),
-                      Padding(padding: EdgeInsets.all(globals.paddingValue)),
+                      Padding(padding: EdgeInsets.all(globals.PADDING)),
                       TextFormField(
                         obscureText: false,
                         style: style,
@@ -261,9 +299,9 @@ class _UserRegistrationState extends State<UserRegistration> {
                           return null;
                         },
                       ),
-                      Padding(padding: EdgeInsets.all(globals.paddingValue)),
+                      Padding(padding: EdgeInsets.all(globals.PADDING)),
                       Center(child: Text("CONTACT INFORMATION", style: style)),
-                      Padding(padding: EdgeInsets.all(globals.paddingValue)),
+                      Padding(padding: EdgeInsets.all(globals.PADDING)),
                       TextFormField(
                         obscureText: false,
                         style: style,
@@ -278,13 +316,13 @@ class _UserRegistrationState extends State<UserRegistration> {
                                 borderRadius: BorderRadius.circular(32.0))),
                         validator: (value) {
                           print('validator called');
-                          if (value.isEmpty) {
-                            return 'Please enter some text';
+                          if (value.isNotEmpty) {
+                            return _phoneNumberValidator(value);
                           }
                           return null;
                         },
                       ),
-                      Padding(padding: EdgeInsets.all(globals.paddingValue)),
+                      Padding(padding: EdgeInsets.all(globals.PADDING)),
                       TextFormField(
                         obscureText: false,
                         style: style,
@@ -298,13 +336,13 @@ class _UserRegistrationState extends State<UserRegistration> {
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(32.0))),
                         validator: (value) {
-                          if (value.length > 0) {
+                          if (value.isNotEmpty) {
                             return _validateEmail(value);
                           }
                           return null;
                         },
                       ),
-                      Padding(padding: EdgeInsets.all(globals.paddingValue)),
+                      Padding(padding: EdgeInsets.all(globals.PADDING)),
                       Material(
                         elevation: 5.0,
                         borderRadius: BorderRadius.circular(30.0),
@@ -320,14 +358,14 @@ class _UserRegistrationState extends State<UserRegistration> {
                               globals.obj.setAddressLine(_address1Filter.text);
                               globals.obj.setCity(_cityFilter.text);
                               globals.obj.setState(_stateFilter.text);
-                              globals.obj.setPinCode(_pincodeFilter.text);
+                              globals.obj.setPincode(_pincodeFilter.text);
                               globals.obj.setContact(_contactFilter.text);
                               globals.obj.setEmail(_emailFilter.text);
 
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Credentials()),
+                                    builder: (context) => ImageUpload()),
                               );
 //                              print('No error');
                             } else {
@@ -341,7 +379,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                                   fontWeight: FontWeight.bold)),
                         ),
                       ),
-                      Padding(padding: EdgeInsets.all(globals.paddingValue)),
+                      Padding(padding: EdgeInsets.all(globals.PADDING)),
                     ],
                   ),
                 )),

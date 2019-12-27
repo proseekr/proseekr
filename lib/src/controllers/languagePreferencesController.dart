@@ -13,31 +13,35 @@ class LanguagePreferencesController {
     return _availableLanguages;
   }
 
+  static bool isPrefLangSet() {
+    print("Calling isPreflangSet()..");
+    var pl = getPrefLang();
+    print("Language retuned by the call: $pl");
+    return pl != null ? true : false;
+  }
+
   static String getPrefLang() {
+    print("Calling getPrefLang()...");
     _getLanguage();
+    print("Called getPrefLang()");
     return _preferredLang;
   }
 
-  static void initLang() async {
-    _preferredLang = await _getLanguage();
-    print(_preferredLang);
-    _preferredLang = _preferredLang == null ? 'English' : null;
-  }
-
-  static Future<String> _getLanguage() async {
+  static void _getLanguage() async {
+    print("calling _getLanguage()...");
     final prefs = await SharedPreferences.getInstance();
+    print("Called _getLanguage()");
     _preferredLang = prefs.getString('preferredLang');
     print('CPL: $_preferredLang');
-    return _preferredLang == null ? 'English' : _preferredLang;
   }
 
   static Future<void> setPrefLang(String prefLang) async {
     final prefs = await SharedPreferences.getInstance();
-    _preferredLang = prefLang;
     await prefs.setString('preferredLang', _preferredLang);
+    _preferredLang = prefLang;
   }
 
-  static Future<void> resetLanguage() async {
+  static void resetLanguage() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('preferredLang', 'English');
   }
