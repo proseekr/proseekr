@@ -1,5 +1,6 @@
 import 'dart:io';
-class ProviderData{
+
+class ProviderData {
   String _firstName = "";
   String _lastName = "";
   String _gender = "";
@@ -15,99 +16,81 @@ class ProviderData{
   String get imageURL => _imageURL;
   File _imageFile;
 
-  File get imageFile => _imageFile;
-
-  void setImageFile(File value) {
-    _imageFile = value;
-  }
-
-  void setImageURL(String value) {
-    _imageURL = value;
-  }
-
-
   @override
   String toString() {
-    return 'userData{_firstName: $_firstName, _lastName: $_lastName, _gender: $_gender, _storeName: $_storeName, _addressLine: $_addressLine, _city: $_city, _state: $_state, _pincode: $_pincode, _contact: $_contact, _email: $_email, _imageURL: $_imageURL, _documentURL: $_documentURL}';
-  }
-
-  String get gender => _gender;
-
-  void setGender(String value) {
-    _gender = value;
-  }
-
-
-  @override
-
-  void setFullName( String fn, String ln ) {   //B
-    _firstName = fn;
-    _lastName = ln;
+    return 'userData{'
+        '_firstName: $_firstName,'
+        '_lastName: $_lastName,'
+        '_gender: $_gender,'
+        ' _storeName: $_storeName,'
+        ' _addressLine: $_addressLine,'
+        ' _city: $_city,'
+        ' _state: $_state,'
+        ' _pincode: $_pincode,'
+        ' _contact: $_contact,'
+        ' _email: $_email,'
+        ' _imageURL: $_imageURL,'
+        ' _documentURL: $_documentURL'
+        '}';
   }
 
   String get firstName => _firstName;
 
-  void setFirstName(String value) {
-    _firstName = value;
-  }
-
-
   String get lastName => _lastName;
 
-  void setLastName(String value) {
-    _lastName = value;
-  }
+  String get gender => _gender;
 
   String get addressLine => _addressLine;
 
-  void setAddressLine(String value) {
-    _addressLine = value;
-  }
-
   String get city => _city;
 
-  void setCity(String value) {
-    _city = value;
-  }
-
   String get state => _state;
-
-  void setState(String value) {
-    _state = value;
-  }
 
   String get pincode => _pincode;
 
   String get storeName => _storeName;
 
-  void setStoreName(String value) {
-    _storeName = value;
-  }
-
-  void setPincode(String value) {
-    _pincode = value;
-  }
-
   String get contact => _contact;
-
-  void setContact(String value) {
-    _contact = value;
-  }
 
   String get email => _email;
 
-  void setEmail(String value) {
-    _email = value;
-  }
-
   String get documentURL => _documentURL;
 
-  void setDocumentURL(String value) {
-    _documentURL = value;
+  File get imageFile => _imageFile;
+
+  void setFullName(String firstName, String lastName) {
+    _firstName = firstName;
+    _lastName = lastName;
   }
+
+  void setFirstName(String firstName) => _firstName = firstName;
+
+  void setImageURL(String value) => _imageURL = value;
+
+  void setImageFile(File value) => _imageFile = value;
+
+  void setGender(String value) => _gender = value;
+
+  void setLastName(String value) => _lastName = value;
+
+  void setAddressLine(String value) => _addressLine = value;
+
+  void setCity(String value) => _city = value;
+
+  void setState(String value) => _state = value;
+
+  void setStoreName(String value) => _storeName = value;
+
+  void setPincode(String value) => _pincode = value;
+
+  void setContact(String value) => _contact = value;
+
+  void setEmail(String value) => _email = value;
+
+  void setDocumentURL(String value) => _documentURL = value;
 }
 
-class SeekerData{
+class SeekerData {
   String _firstName = "";
   String _lastName = "";
   String _gender = "";
@@ -121,6 +104,43 @@ class SeekerData{
   List<String> _category;
   String _experience = "";
   String _expertise = "";
+
+  String get imageURL => _imageURL;
+
+  void setImageURL(String value) {
+    _imageURL = value;
+  }
+
+  File get imageFile => _imageFile;
+
+  void setImageFile(File value) {
+    _imageFile = value;
+  }
+
+  void setImageURL(String value) {
+    _imageURL = value;
+  }
+
+  @override
+  String toString() {
+    return 'userData{_firstName: $_firstName, _lastName: $_lastName, _gender: $_gender, _storeName: $_storeName, _addressLine: $_addressLine, _city: $_city, _state: $_state, _pincode: $_pincode, _contact: $_contact, _email: $_email, _imageURL: $_imageURL, _documentURL: $_documentURL}';
+  }
+
+  String get gender => _gender;
+
+  void setGender(String value) {
+    _gender = value;
+  }
+
+  void setFullName(String fn, String ln) {
+    //B
+    _firstName = fn;
+    _lastName = ln;
+  }
+
+  String get firstName => _firstName;
+
+  String _imageURL = "";
   List<String> _languages;
 
   String get firstName => _firstName;
@@ -139,6 +159,12 @@ class SeekerData{
 
   void setEmail(String value) {
     _email = value;
+  }
+
+  String get lastName => _lastName;
+
+  void setLastName(String value) {
+    _lastName = value;
   }
 
   String get addressLine => _addressLine;
@@ -177,33 +203,39 @@ class SeekerData{
     _category = value;
   }
 
-  String get expertise => _expertise;
-
-  void setExpertise(String value) {
-    _expertise = value;
-  }
-
-  List<String> get languages => _languages;
-
-  void setLanguages(List<String> value) {
-    _languages = value;
-  }
-
-  String get gender => _gender;
-
-  void setGender(String value) {
-    _gender = value;
-  }
-
   String get state => _state;
 
   void setState(String value) {
     _state = value;
   }
 
-  String get experience => _experience;
+  String get pincode => _pincode;
 
-  void setExperience(String value) {
-    _experience = value;
+  String get storeName => _storeName;
+
+  void setStoreName(String value) {
+    _storeName = value;
+  }
+
+  void setPincode(String value) {
+    _pincode = value;
+  }
+
+  String get contact => _contact;
+
+  void setContact(String value) {
+    _contact = value;
+  }
+
+  String get email => _email;
+
+  void setEmail(String value) {
+    _email = value;
+  }
+
+  String get documentURL => _documentURL;
+
+  void setDocumentURL(String value) {
+    _documentURL = value;
   }
 }
