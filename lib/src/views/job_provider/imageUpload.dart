@@ -1,23 +1,23 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
+
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../resources/globals.dart' as globals;
-import '../job_povider/userLogin.dart';
-import 'userProfile.dart';
 
-class SeekerImageUpload extends StatefulWidget{
-  SeekerImageUpload({Key Key, this.title}) : super(key: Key);
+import '../../models/globals.dart' as globals;
+import 'pdfUpload.dart';
+
+class ImageUpload extends StatefulWidget {
+  ImageUpload({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  _SeekerImageUploadState createState() => _SeekerImageUploadState();
+  _ImageUploadState createState() => _ImageUploadState();
 }
 
-class _SeekerImageUploadState extends State<SeekerImageUpload>{
+class _ImageUploadState extends State<ImageUpload> {
   @override
   File _imageFile;
 
@@ -48,7 +48,6 @@ class _SeekerImageUploadState extends State<SeekerImageUpload>{
       _imageFile = selected;
       globals.obj.setImageFile(_imageFile);
     });
-
   }
 
   /// Remove image
@@ -127,41 +126,19 @@ class Uploader extends StatefulWidget {
 
 class _UploaderState extends State<Uploader> {
   final FirebaseStorage _storage =
-  FirebaseStorage(storageBucket: 'gs://b4di-b4d4c.appspot.com');
+      FirebaseStorage(storageBucket: 'gs://b4di-b4d4c.appspot.com');
 
   StorageUploadTask _uploadTask;
 
-  _startUpload() {
-    print('starteUpload called');
-    String filePath = 'images/${DateTime.now()}.png';
-
-    setState(() {
-      print('setState called');
-      _uploadTask = _storage.ref().child(filePath).putFile(widget.file);
-
-    });
-    Firestore.instance
-        .collection('Seeker')
-        .add({
-      "address": {
-        "address_line": globals.seeker.addressLine,
-        "city": globals.seeker.city,
-        "state": globals.seeker.state,
-        "pincode": globals.seeker.pincode,
-      },
-      "basic_details": {
-        "contact": globals.seeker.contact,
-        "email": globals.seeker.email,
-        "first_name": globals.seeker.firstName,
-        "gender": globals.seeker.gender,
-        "last_name": globals.seeker.lastName,
-      },
-      "basic_qualification":globals.seeker.qualification,
-      "experience": globals.seeker.experience,
-      "expertise": globals.seeker.expertise,
-      "ImageURL": "TestURL"
-    });
-  }
+//  _startUpload() {
+//    print('starteUpload called');
+//    String filePath = 'images/${DateTime.now()}.png';
+//
+//    setState(() {
+//      print('setState called');
+//      _uploadTask = _storage.ref().child(filePath).putFile(widget.file);
+//    });
+//  }
 
   @override
   Widget build(BuildContext context) {
@@ -169,15 +146,13 @@ class _UploaderState extends State<Uploader> {
       color: Colors.blue,
       label: Text('Upload to Firebase'),
       icon: Icon(Icons.cloud_upload),
-      onPressed:(){
-              _startUpload();
+      onPressed: () {
+//              _startUpload();
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) =>
-              UserProfile()),);
+          MaterialPageRoute(builder: (context) => FilePickerDemo()),
+        );
       },
     );
-
-
   }
 }

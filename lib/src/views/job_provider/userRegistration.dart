@@ -4,14 +4,20 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../../../src/resources/globals.dart' as globals;
 import 'imageUpload.dart';
 
+<<<<<<< HEAD:lib/src/views/job_povider/userRegistration.dart
 <<<<<<< HEAD:lib/src/views/job_provider/userRegistration.dart
+=======
+>>>>>>> build_moses:lib/src/views/job_provider/userRegistration.dart
 import '../../../src/models/globals.dart' as globals;
 import 'imageUpload.dart';
 
 class UserRegistration extends StatefulWidget {
+<<<<<<< HEAD:lib/src/views/job_povider/userRegistration.dart
 =======
 class UserRegistration extends StatefulWidget{
 >>>>>>> 08085fc11e206ea35eff19468973136f39cb2bdb:lib/src/views/job_povider/userRegistration.dart
+=======
+>>>>>>> build_moses:lib/src/views/job_provider/userRegistration.dart
   UserRegistration({Key Key, this.title}) : super(key: Key);
   final String title;
 
@@ -74,22 +80,30 @@ class _UserRegistrationState extends State<UserRegistration>{
     }
 
     String _phoneNumberValidator(String value) {
+<<<<<<< HEAD:lib/src/views/job_povider/userRegistration.dart
 <<<<<<< HEAD:lib/src/views/job_provider/userRegistration.dart
       Pattern pattern = r'^(?:[+0]9)?[0-9]{10}$';
 =======
       Pattern pattern =
           r'^(?:[+0]9)?[0-9]{10}$';
 >>>>>>> 08085fc11e206ea35eff19468973136f39cb2bdb:lib/src/views/job_povider/userRegistration.dart
+=======
+      Pattern pattern = r'^(?:[+0]9)?[0-9]{10}$';
+>>>>>>> build_moses:lib/src/views/job_provider/userRegistration.dart
       RegExp regex = new RegExp(pattern);
       if (value.isEmpty || !regex.hasMatch(value))
         return 'Enter Valid Phone Number';
       else
         return null;
     }
+<<<<<<< HEAD:lib/src/views/job_povider/userRegistration.dart
 <<<<<<< HEAD:lib/src/views/job_provider/userRegistration.dart
 
 =======
 >>>>>>> 08085fc11e206ea35eff19468973136f39cb2bdb:lib/src/views/job_povider/userRegistration.dart
+=======
+
+>>>>>>> build_moses:lib/src/views/job_provider/userRegistration.dart
     void _showDialog() {
       // flutter defined function
       Fluttertoast.showToast(
@@ -156,10 +170,13 @@ class _UserRegistrationState extends State<UserRegistration>{
                             ),
                           ),
                           Padding(padding: EdgeInsets.all(globals.PADDING)),
+<<<<<<< HEAD:lib/src/views/job_povider/userRegistration.dart
 =======
                             ),),
                           Padding(padding: EdgeInsets.all(globals.paddingValue)),
 >>>>>>> 08085fc11e206ea35eff19468973136f39cb2bdb:lib/src/views/job_povider/userRegistration.dart
+=======
+>>>>>>> build_moses:lib/src/views/job_provider/userRegistration.dart
                           Expanded(
                             child:SingleChildScrollView(
                               child: TextFormField(
@@ -184,6 +201,42 @@ class _UserRegistrationState extends State<UserRegistration>{
                         ],
                       ),
                       Padding(padding: EdgeInsets.all(globals.PADDING)),
+<<<<<<< HEAD:lib/src/views/job_povider/userRegistration.dart
+=======
+                      Center(
+                          child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(32.0),
+                          border: Border.all(
+                              color: Colors.black,
+                              style: BorderStyle.solid,
+                              width: 0.80),
+                        ),
+                        child: DropdownButton(
+                          elevation: 0,
+                          underline: Container(
+                            height: 0,
+                          ),
+                          hint: Text(
+                              'Please choose a gender'), // Not necessary for Option 1
+                          value: _selectedGender,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _selectedGender = newValue;
+                              globals.obj.setGender(_selectedGender);
+                            });
+                          },
+                          items: _genders.map((gender) {
+                            return DropdownMenuItem(
+                              child: new Text(gender),
+                              value: gender,
+                            );
+                          }).toList(),
+                        ),
+                      )),
+                      Padding(padding: EdgeInsets.all(globals.PADDING)),
+>>>>>>> build_moses:lib/src/views/job_provider/userRegistration.dart
                       Center(
                           child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -243,6 +296,7 @@ class _UserRegistrationState extends State<UserRegistration>{
                             ),
                           )
                       ),
+<<<<<<< HEAD:lib/src/views/job_povider/userRegistration.dart
                       Padding(padding: EdgeInsets.all(globals.paddingValue)),
                       Center(
                         child: Text(
@@ -250,6 +304,8 @@ class _UserRegistrationState extends State<UserRegistration>{
                             style: style
                         ),
                       ),
+=======
+>>>>>>> build_moses:lib/src/views/job_provider/userRegistration.dart
                       Padding(padding: EdgeInsets.all(globals.PADDING)),
                       TextFormField(
                         obscureText: false,
@@ -346,6 +402,7 @@ class _UserRegistrationState extends State<UserRegistration>{
                           return null;
                         },
                       ),
+<<<<<<< HEAD:lib/src/views/job_povider/userRegistration.dart
 <<<<<<< HEAD:lib/src/views/job_provider/userRegistration.dart
                       Padding(padding: EdgeInsets.all(globals.PADDING)),
                       Center(child: Text("CONTACT INFORMATION", style: style)),
@@ -359,6 +416,11 @@ class _UserRegistrationState extends State<UserRegistration>{
                           )),
                       Padding(padding: EdgeInsets.all(globals.paddingValue)),
 >>>>>>> 08085fc11e206ea35eff19468973136f39cb2bdb:lib/src/views/job_povider/userRegistration.dart
+=======
+                      Padding(padding: EdgeInsets.all(globals.PADDING)),
+                      Center(child: Text("CONTACT INFORMATION", style: style)),
+                      Padding(padding: EdgeInsets.all(globals.PADDING)),
+>>>>>>> build_moses:lib/src/views/job_provider/userRegistration.dart
                       TextFormField(
                         obscureText: false,
                         style: style,
@@ -372,11 +434,15 @@ class _UserRegistrationState extends State<UserRegistration>{
                             OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
                         validator: (value) {
                           print('validator called');
+<<<<<<< HEAD:lib/src/views/job_povider/userRegistration.dart
 <<<<<<< HEAD:lib/src/views/job_provider/userRegistration.dart
                           if (value.isNotEmpty) {
 =======
                           if (!value.isEmpty) {
 >>>>>>> 08085fc11e206ea35eff19468973136f39cb2bdb:lib/src/views/job_povider/userRegistration.dart
+=======
+                          if (value.isNotEmpty) {
+>>>>>>> build_moses:lib/src/views/job_provider/userRegistration.dart
                             return _phoneNumberValidator(value);
                           }
                           return null;
@@ -395,7 +461,10 @@ class _UserRegistrationState extends State<UserRegistration>{
                             border:
                             OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
                         validator: (value) {
+<<<<<<< HEAD:lib/src/views/job_povider/userRegistration.dart
 <<<<<<< HEAD:lib/src/views/job_provider/userRegistration.dart
+=======
+>>>>>>> build_moses:lib/src/views/job_provider/userRegistration.dart
                           if (value.isNotEmpty) {
                             return _validateEmail(value);
 =======
@@ -434,9 +503,12 @@ class _UserRegistrationState extends State<UserRegistration>{
 <<<<<<< HEAD:lib/src/views/job_provider/userRegistration.dart
                                 MaterialPageRoute(
                                     builder: (context) => ImageUpload()),
+<<<<<<< HEAD:lib/src/views/job_povider/userRegistration.dart
 =======
                                 MaterialPageRoute(builder: (context) => ImageUpload()),
 >>>>>>> 08085fc11e206ea35eff19468973136f39cb2bdb:lib/src/views/job_povider/userRegistration.dart
+=======
+>>>>>>> build_moses:lib/src/views/job_provider/userRegistration.dart
                               );
 //                              print('No error');
                             }
@@ -451,12 +523,16 @@ class _UserRegistrationState extends State<UserRegistration>{
                                   color: Colors.white, fontWeight: FontWeight.bold)),
                         ),
                       ),
+<<<<<<< HEAD:lib/src/views/job_povider/userRegistration.dart
 <<<<<<< HEAD:lib/src/views/job_provider/userRegistration.dart
                       Padding(padding: EdgeInsets.all(globals.PADDING)),
 =======
 
                       Padding(padding: EdgeInsets.all(globals.paddingValue)),
 >>>>>>> 08085fc11e206ea35eff19468973136f39cb2bdb:lib/src/views/job_povider/userRegistration.dart
+=======
+                      Padding(padding: EdgeInsets.all(globals.PADDING)),
+>>>>>>> build_moses:lib/src/views/job_provider/userRegistration.dart
                     ],
                   ),)
             ),
