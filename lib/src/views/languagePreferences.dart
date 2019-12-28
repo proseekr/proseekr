@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proseekr/src/controllers/languagePreferencesController.dart';
 import 'package:proseekr/src/i18n/app_translations.dart';
 import 'package:proseekr/src/i18n/application.dart';
-import 'package:proseekr/src/views/actorSelector_m.dart';
+import 'package:proseekr/src/views/actorSelector.dart';
 import 'package:proseekr/src/widgets/app_description.dart';
 import 'package:proseekr/src/widgets/app_title.dart';
 
