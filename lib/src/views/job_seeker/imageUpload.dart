@@ -18,7 +18,6 @@ class SeekerImageUpload extends StatefulWidget {
 }
 
 class _SeekerImageUploadState extends State<SeekerImageUpload> {
-  @override
   File _imageFile;
 
   /// Cropper plugin
