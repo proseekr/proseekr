@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -18,7 +17,6 @@ class ImageUpload extends StatefulWidget {
 }
 
 class _ImageUploadState extends State<ImageUpload> {
-  @override
   File _imageFile;
 
   /// Cropper plugin
@@ -125,10 +123,12 @@ class Uploader extends StatefulWidget {
 }
 
 class _UploaderState extends State<Uploader> {
-  final FirebaseStorage _storage =
-      FirebaseStorage(storageBucket: 'gs://b4di-b4d4c.appspot.com');
+  // TODO:
+//  final FirebaseStorage _storage =
+//      FirebaseStorage(storageBucket: 'gs://b4di-b4d4c.appspot.com');
 
-  StorageUploadTask _uploadTask;
+  // TODO:
+//  StorageUploadTask _uploadTask;
 
 //  _startUpload() {
 //    print('starteUpload called');
