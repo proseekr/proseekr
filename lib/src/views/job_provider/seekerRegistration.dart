@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:keyboard_avoider/keyboard_avoider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import '../../../src/resources/globals.dart' as globals;
-import 'imageUpload.dart';
+import 'package:keyboard_avoider/keyboard_avoider.dart';
+import 'package:proseekr/src/models/globals.dart' as globals;
+import 'package:proseekr/src/views/job_seeker/imageUpload.dart';
 
-
-class SeekerRegistration extends StatefulWidget{
+class SeekerRegistration extends StatefulWidget {
   SeekerRegistration({Key Key, this.title}) : super(key: Key);
   final String title;
 
@@ -13,10 +12,9 @@ class SeekerRegistration extends StatefulWidget{
   _SeekerRegistrationState createState() => _SeekerRegistrationState();
 }
 
-class _SeekerRegistrationState extends State<SeekerRegistration>{
-
+class _SeekerRegistrationState extends State<SeekerRegistration> {
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextStyle style = TextStyle( fontSize: 14.0);
+  TextStyle style = TextStyle(fontSize: 14.0);
   final TextEditingController _firstNameFilter = new TextEditingController();
   final TextEditingController _lastNameFilter = new TextEditingController();
   final TextEditingController _contactFilter = new TextEditingController();
@@ -28,7 +26,8 @@ class _SeekerRegistrationState extends State<SeekerRegistration>{
   final TextEditingController _stateFilter = new TextEditingController();
   final TextEditingController _pincodeFilter = new TextEditingController();
 
-  final TextEditingController _qualificationsFilter = new TextEditingController();
+  final TextEditingController _qualificationsFilter =
+      new TextEditingController();
   final TextEditingController _categoryFilter = new TextEditingController();
   final TextEditingController _experienceFilter = new TextEditingController();
   final TextEditingController _expertiseFilter = new TextEditingController();
@@ -45,18 +44,19 @@ class _SeekerRegistrationState extends State<SeekerRegistration>{
   void initState() {
     // TODO: implement initState
     setState(() {
-      for(int i=0;i<20;i++){
+      for (int i = 0; i < 20; i++) {
         inputs.add(true);
       }
     });
   }
 
-  void ItemChange(bool val,int index){
+  void ItemChange(bool val, int index) {
     setState(() {
       inputs[index] = val;
     });
   }
-  void dispose(){
+
+  void dispose() {
     _firstNameFilter.dispose();
     _lastNameFilter.dispose();
     _genderFilter.dispose();
@@ -66,17 +66,16 @@ class _SeekerRegistrationState extends State<SeekerRegistration>{
     _cityFilter.dispose();
     _stateFilter.dispose();
     _pincodeFilter.dispose();
-   _qualificationsFilter.dispose();
-   _categoryFilter.dispose();
-   _expertiseFilter.dispose();
-   _experienceFilter.dispose();
-   _languageFilter.dispose();
+    _qualificationsFilter.dispose();
+    _categoryFilter.dispose();
+    _expertiseFilter.dispose();
+    _experienceFilter.dispose();
+    _languageFilter.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-
     String _validateEmail(String value) {
       print("email validator called");
       String p = "[a-zA-Z0-9\+\.\_\%\-\+]{1,256}" +
@@ -98,14 +97,14 @@ class _SeekerRegistrationState extends State<SeekerRegistration>{
     }
 
     String _phoneNumberValidator(String value) {
-      Pattern pattern =
-          r'^(?:[+0]9)?[0-9]{10}$';
+      Pattern pattern = r'^(?:[+0]9)?[0-9]{10}$';
       RegExp regex = new RegExp(pattern);
       if (value.isEmpty || !regex.hasMatch(value))
         return 'Enter Valid Phone Number';
       else
         return null;
     }
+
     void _showDialog() {
       // flutter defined function
       Fluttertoast.showToast(
@@ -115,8 +114,7 @@ class _SeekerRegistrationState extends State<SeekerRegistration>{
           timeInSecForIos: 1,
           backgroundColor: Colors.black,
           textColor: Colors.white,
-          fontSize: 16.0
-      );
+          fontSize: 16.0);
     }
 
     bool _autoValidate = false;
@@ -126,7 +124,6 @@ class _SeekerRegistrationState extends State<SeekerRegistration>{
         backgroundColor: Colors.grey[250],
         appBar: AppBar(
           title: Text("proseekr"),
-
         ),
         body: Container(
           padding: EdgeInsets.all(20),
@@ -140,27 +137,30 @@ class _SeekerRegistrationState extends State<SeekerRegistration>{
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                      Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.03)),
+                      Padding(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.03)),
                       Center(
-                        child: Text(
-                            "PERSONAL INFORMATION",
-                            style:style
-                        ),
+                        child: Text("PERSONAL INFORMATION", style: style),
                       ),
-                      Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.03)),
+                      Padding(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.03)),
                       Row(
                         children: <Widget>[
                           Expanded(
-                            child:TextFormField(
+                            child: TextFormField(
                               obscureText: false,
                               style: style,
                               controller: _firstNameFilter,
                               decoration: InputDecoration(
-                                  prefixIcon:new Icon(Icons.person),
-                                  contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                                  prefixIcon: new Icon(Icons.person),
+                                  contentPadding: EdgeInsets.fromLTRB(
+                                      20.0, 15.0, 20.0, 15.0),
                                   hintText: "First Name",
-                                  border:
-                                  OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+                                  border: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(32.0))),
                               validator: (value) {
                                 print('validator called');
                                 if (value.isEmpty) {
@@ -168,20 +168,25 @@ class _SeekerRegistrationState extends State<SeekerRegistration>{
                                 }
                                 return null;
                               },
-                            ),),
-                          Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.03)),
+                            ),
+                          ),
+                          Padding(
+                              padding: EdgeInsets.all(
+                                  MediaQuery.of(context).size.width * 0.03)),
                           Expanded(
-                            child:SingleChildScrollView(
+                            child: SingleChildScrollView(
                               child: TextFormField(
                                 obscureText: false,
                                 style: style,
                                 controller: _lastNameFilter,
                                 decoration: InputDecoration(
-                                    prefixIcon:new Icon(Icons.person),
-                                    contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                                    prefixIcon: new Icon(Icons.person),
+                                    contentPadding: EdgeInsets.fromLTRB(
+                                        20.0, 15.0, 20.0, 15.0),
                                     hintText: "Last Name",
-                                    border:
-                                    OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(32.0))),
                                 validator: (value) {
                                   print('validator called');
                                   if (value.isEmpty) {
@@ -190,24 +195,29 @@ class _SeekerRegistrationState extends State<SeekerRegistration>{
                                   return null;
                                 },
                               ),
-                            ),),
+                            ),
+                          ),
                         ],
                       ),
-                      Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.03)),
+                      Padding(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.03)),
                       Row(
                         children: <Widget>[
                           Expanded(
-                            child:TextFormField(
+                            child: TextFormField(
                               obscureText: false,
                               style: style,
                               keyboardType: TextInputType.number,
                               controller: _contactFilter,
                               decoration: InputDecoration(
-                                  prefixIcon:new Icon(Icons.person),
-                                  contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                                  prefixIcon: new Icon(Icons.person),
+                                  contentPadding: EdgeInsets.fromLTRB(
+                                      20.0, 15.0, 20.0, 15.0),
                                   hintText: "Contact",
-                                  border:
-                                  OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+                                  border: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(32.0))),
                               validator: (value) {
                                 print('validator called');
                                 if (value.isEmpty) {
@@ -215,20 +225,25 @@ class _SeekerRegistrationState extends State<SeekerRegistration>{
                                 }
                                 return null;
                               },
-                            ),),
-                          Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.03)),
+                            ),
+                          ),
+                          Padding(
+                              padding: EdgeInsets.all(
+                                  MediaQuery.of(context).size.width * 0.03)),
                           Expanded(
-                            child:SingleChildScrollView(
+                            child: SingleChildScrollView(
                               child: TextFormField(
                                 obscureText: false,
                                 style: style,
                                 controller: _emailFilter,
                                 decoration: InputDecoration(
-                                    prefixIcon:new Icon(Icons.person),
-                                    contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                                    prefixIcon: new Icon(Icons.person),
+                                    contentPadding: EdgeInsets.fromLTRB(
+                                        20.0, 15.0, 20.0, 15.0),
                                     hintText: "Email",
-                                    border:
-                                    OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(32.0))),
                                 validator: (value) {
                                   print('validator called');
                                   if (value.isEmpty) {
@@ -237,54 +252,61 @@ class _SeekerRegistrationState extends State<SeekerRegistration>{
                                   return null;
                                 },
                               ),
-                            ),),
+                            ),
+                          ),
                         ],
                       ),
-                      Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.03)),
+                      Padding(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.03)),
                       Center(
                           child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(32.0),
-                              border: Border.all(
-                                  color: Colors.black, style: BorderStyle.solid, width: 0.80),
-                            ),
-                            child: DropdownButton(
-                              hint: Text('Please choose a gender'), // Not necessary for Option 1
-                              value: _selectedGender,
-                              onChanged: (newValue) {
-                                setState(() {
-                                  _selectedGender = newValue;
-                                  globals.seeker.setGender(_selectedGender);
-                                });
-                              },
-                              items: _genders.map((gender) {
-                                return DropdownMenuItem(
-                                  child: new Text(gender),
-                                  value: gender,
-                                );
-                              }).toList(),
-                            ),
-                          )
-                      ),
-                      Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.03)),
-                      Center(
-                        child: Text(
-                            "ADDRESS",
-                            style: style
+                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(32.0),
+                          border: Border.all(
+                              color: Colors.black,
+                              style: BorderStyle.solid,
+                              width: 0.80),
                         ),
+                        child: DropdownButton(
+                          hint: Text(
+                              'Please choose a gender'), // Not necessary for Option 1
+                          value: _selectedGender,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _selectedGender = newValue;
+                              globals.seeker.setGender(_selectedGender);
+                            });
+                          },
+                          items: _genders.map((gender) {
+                            return DropdownMenuItem(
+                              child: new Text(gender),
+                              value: gender,
+                            );
+                          }).toList(),
+                        ),
+                      )),
+                      Padding(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.03)),
+                      Center(
+                        child: Text("ADDRESS", style: style),
                       ),
-                      Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.03)),
+                      Padding(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.03)),
                       TextFormField(
                         obscureText: false,
                         style: style,
                         controller: _address1Filter,
                         decoration: InputDecoration(
-                            prefixIcon:new Icon(Icons.home),
-                            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                            prefixIcon: new Icon(Icons.home),
+                            contentPadding:
+                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                             hintText: "Address Line 1",
-                            border:
-                            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(32.0))),
                         validator: (value) {
                           print('validator called');
                           if (value.isEmpty) {
@@ -293,17 +315,20 @@ class _SeekerRegistrationState extends State<SeekerRegistration>{
                           return null;
                         },
                       ),
-                      Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.03)),
+                      Padding(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.03)),
                       TextFormField(
                         obscureText: false,
                         style: style,
                         controller: _cityFilter,
                         decoration: InputDecoration(
-                            prefixIcon:new Icon(Icons.location_on),
-                            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                            prefixIcon: new Icon(Icons.location_on),
+                            contentPadding:
+                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                             hintText: "City",
-                            border:
-                            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(32.0))),
                         validator: (value) {
                           print('validator called');
                           if (value.isEmpty) {
@@ -312,17 +337,20 @@ class _SeekerRegistrationState extends State<SeekerRegistration>{
                           return null;
                         },
                       ),
-                      Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.03)),
+                      Padding(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.03)),
                       TextFormField(
                         obscureText: false,
                         style: style,
                         controller: _stateFilter,
                         decoration: InputDecoration(
-                            prefixIcon:new Icon(Icons.location_on),
-                            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                            prefixIcon: new Icon(Icons.location_on),
+                            contentPadding:
+                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                             hintText: "State",
-                            border:
-                            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(32.0))),
                         validator: (value) {
                           print('validator called');
                           if (value.isEmpty) {
@@ -331,18 +359,21 @@ class _SeekerRegistrationState extends State<SeekerRegistration>{
                           return null;
                         },
                       ),
-                      Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.03)),
+                      Padding(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.03)),
                       TextFormField(
                         obscureText: false,
                         style: style,
-                        keyboardType:TextInputType.number,
+                        keyboardType: TextInputType.number,
                         controller: _pincodeFilter,
                         decoration: InputDecoration(
-                            prefixIcon:new Icon(Icons.location_on),
-                            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                            prefixIcon: new Icon(Icons.location_on),
+                            contentPadding:
+                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                             hintText: "Pincode",
-                            border:
-                            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(32.0))),
                         validator: (value) {
                           print('validator called');
                           if (value.isEmpty) {
@@ -351,128 +382,140 @@ class _SeekerRegistrationState extends State<SeekerRegistration>{
                           return null;
                         },
                       ),
-                      Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.03)),
+                      Padding(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.03)),
                       Center(
-                          child: Text(
-                              "ADDITIONAL INFORMATION",
-                              style: style
-                          )),
-                      Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.03)),
-              Container(
-                child: Row(
-                  children: <Widget>[
-                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(32.0),
-                        border: Border.all(
-                            color: Colors.black, style: BorderStyle.solid, width: 0.80),
+                          child: Text("ADDITIONAL INFORMATION", style: style)),
+                      Padding(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.03)),
+                      Container(
+                        child: Row(children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 10.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(32.0),
+                              border: Border.all(
+                                  color: Colors.black,
+                                  style: BorderStyle.solid,
+                                  width: 0.80),
+                            ),
+                            child: DropdownButton(
+                              hint: Text(
+                                  'Please choose your qualification'), // Not necessary for Option 1
+                              value: _selectedQualification,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _selectedQualification = newValue;
+                                  globals.seeker
+                                      .setGender(_selectedQualification);
+                                });
+                              },
+                              items: _qualification.map((qualification) {
+                                return DropdownMenuItem(
+                                  child: new Text(qualification),
+                                  value: qualification,
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 10.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(32.0),
+                              border: Border.all(
+                                  color: Colors.black,
+                                  style: BorderStyle.solid,
+                                  width: 0.80),
+                            ),
+                            child: DropdownButton(
+                              hint: Text(
+                                  'Please choose your experience(yrs)'), // Not necessary for Option 1
+                              value: _selectedExperience,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _selectedExperience = newValue;
+                                  globals.seeker.setGender(_selectedExperience);
+                                });
+                              },
+                              items: _experience.map((experience) {
+                                return DropdownMenuItem(
+                                  child: new Text(experience),
+                                  value: experience,
+                                );
+                              }).toList(),
+                            ),
+                          )
+                        ]),
                       ),
-
-                      child: DropdownButton(
-                        hint: Text('Please choose your qualification'), // Not necessary for Option 1
-                        value: _selectedQualification,
-                        onChanged: (newValue) {
-                          setState(() {
-                            _selectedQualification = newValue;
-                            globals.seeker.setGender(_selectedQualification);
-                          });
-                        },
-                        items: _qualification.map((qualification) {
-                          return DropdownMenuItem(
-                            child: new Text(qualification),
-                            value: qualification,
-                          );
-                        }).toList(),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(32.0),
-                        border: Border.all(
-                            color: Colors.black, style: BorderStyle.solid, width: 0.80),
-                      ),
-                      child: DropdownButton(
-                        hint: Text('Please choose your experience(yrs)'), // Not necessary for Option 1
-                        value: _selectedExperience,
-                        onChanged: (newValue) {
-                          setState(() {
-                            _selectedExperience = newValue;
-                            globals.seeker.setGender(_selectedExperience);
-                          });
-                        },
-                        items: _experience.map((experience) {
-                          return DropdownMenuItem(
-                            child: new Text(experience),
-                            value: experience,
-                          );
-                        }).toList(),
-                      ),
-                    )
-                    ]
-                ),
-              ),
-                      Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.03)),
+                      Padding(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.03)),
                       TextFormField(
                         obscureText: false,
                         style: style,
                         controller: _expertiseFilter,
                         decoration: InputDecoration(
-                            prefixIcon:new Icon(Icons.location_on),
-                            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                            prefixIcon: new Icon(Icons.location_on),
+                            contentPadding:
+                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                             hintText: "Expertise (if any)",
-                            border:
-                            OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(32.0))),
                       ),
-                      Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.03)),
+                      Padding(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.03)),
                       Material(
-
                         elevation: 5.0,
                         borderRadius: BorderRadius.circular(30.0),
                         color: Colors.black,
                         child: MaterialButton(
-                          minWidth: MediaQuery.of(context).size.width*0.3,
+                          minWidth: MediaQuery.of(context).size.width * 0.3,
                           padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-
                           onPressed: () {
-                            if(_formKey.currentState.validate()){
-                             globals.seeker.setFirstName(_firstNameFilter.text);
-                             globals.seeker.setLastName(_lastNameFilter.text);
-                             globals.seeker.setContact(_contactFilter.text);
-                             globals.seeker.setEmail(_emailFilter.text);
-                             globals.seeker.setAddressLine(_address1Filter.text);
-                             globals.seeker.setCity(_cityFilter.text);
-                             globals.seeker.setState(_stateFilter.text);
-                             globals.seeker.setPincode(_pincodeFilter.text);
-                             globals.seeker.setQualification(_qualificationsFilter.text);
-                             globals.seeker.setExperience(_experienceFilter.text);
-                             globals.seeker.setExpertise(_expertiseFilter.text);
+                            if (_formKey.currentState.validate()) {
+                              globals.seeker
+                                  .setFirstName(_firstNameFilter.text);
+                              globals.seeker.setLastName(_lastNameFilter.text);
+                              globals.seeker.setContact(_contactFilter.text);
+                              globals.seeker.setEmail(_emailFilter.text);
+                              globals.seeker
+                                  .setAddressLine(_address1Filter.text);
+                              globals.seeker.setCity(_cityFilter.text);
+                              globals.seeker.setState(_stateFilter.text);
+                              globals.seeker.setPincode(_pincodeFilter.text);
+                              globals.seeker
+                                  .setQualification(_qualificationsFilter.text);
+                              globals.seeker
+                                  .setExperience(_experienceFilter.text);
+                              globals.seeker
+                                  .setExpertise(_expertiseFilter.text);
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => SeekerImageUpload()),
+                                MaterialPageRoute(
+                                    builder: (context) => SeekerImageUpload()),
                               );
 //                              print('No error');
-                            }
-                            else {
+                            } else {
                               _showDialog();
                             }
-
                           },
                           child: Text("Next",
                               textAlign: TextAlign.center,
                               style: style.copyWith(
-                                  color: Colors.white, fontWeight: FontWeight.bold)),
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold)),
                         ),
                       ),
-
-                      Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.03)),
+                      Padding(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.03)),
                     ],
-                  ),)
-            ),
+                  ),
+                )),
           ),
-        )
-    );
+        ));
   }
 }
-
