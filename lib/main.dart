@@ -3,18 +3,18 @@ import 'package:proseekr/app.dart';
 
 void main() {
   print("App started");
-//  WidgetsFlutterBinding.ensureInitialized();
-  runApp(ProFeed());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(App());
 }
 
-class ProFeed extends StatelessWidget {
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Firebase: ProSeeker',
+      title: 'ProSeeker',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
       ),
       home: ProSeekerApp(),
     );

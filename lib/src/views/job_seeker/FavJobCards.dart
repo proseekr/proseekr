@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'jobs.dart';
+import '../../models/globals.dart' as globals;
 
 class FavJobCards extends StatefulWidget {
-  String user;
-  FavJobCards(this.user);
+  String user=globals.userId;
+
 
   @override
   FavJobCardsState createState() => FavJobCardsState();
@@ -12,6 +13,6 @@ class FavJobCards extends StatefulWidget {
 class FavJobCardsState extends State<FavJobCards> {
   @override
   Widget build(BuildContext context) {
-    return Jobs(widget.user,"favourite");
+    return Jobs("favourite");
   }
 }

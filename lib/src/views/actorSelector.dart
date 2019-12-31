@@ -1,9 +1,13 @@
 import "package:flutter/material.dart";
 import 'package:proseekr/src/controllers/actorSelectorController.dart';
+import 'package:proseekr/src/i18n/app_translations.dart';
 import 'package:proseekr/src/models/globals.dart' as globals;
-import 'package:proseekr/src/views/job_provider/userLogin.dart';
 import 'package:proseekr/src/views/job_provider/userRegistration.dart';
 import 'package:proseekr/src/views/job_seeker/seekerRegistration.dart';
+import 'package:proseekr/src/views/userLogin.dart';
+import 'package:proseekr/src/widgets/app_description.dart';
+import 'package:proseekr/src/widgets/app_title.dart';
+import 'package:proseekr/src/widgets/hero_image.dart';
 
 class ActorSelector extends StatefulWidget {
   ActorSelector({Key key, this.title}) : super(key: key);
@@ -21,11 +25,6 @@ class _ActorSelectorState extends State<ActorSelector> {
     var actor = ActorSelectorController.getActor();
     print("Build: $actor");
 
-    final heroImage =
-        Image.asset("assets/images/workers_at_construction_site_lq.jpg");
-    final appTitle = Text("app_title", style: TextStyle(fontSize: 48.0));
-    final appDescription =
-        Text("app_description", style: TextStyle(fontSize: 18.0));
     final signInBtn = materialButtonBuilder(context, "login", signIn);
     final signUpBtn = materialButtonBuilder(context, "register", signUp);
 
@@ -34,18 +33,20 @@ class _ActorSelectorState extends State<ActorSelector> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            heroImage,
+            HeroImage(),
             SizedBox(height: 24.0),
-            appTitle,
-            appDescription,
+            AppTitle(),
+            AppDescription(),
             SizedBox(height: 14.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 radioButtonBuilder(globals.SelectedActor.JobProvider),
-                Text("job_provider", style: new TextStyle(fontSize: 16.0)),
+                Text(AppTranslations.of(context).text("job_provider"),
+                    style: new TextStyle(fontSize: 16.0)),
                 radioButtonBuilder(globals.SelectedActor.JobSeeker),
-                Text("job_seeker", style: new TextStyle(fontSize: 16.0)),
+                Text(AppTranslations.of(context).text("job_seeker"),
+                    style: new TextStyle(fontSize: 16.0)),
               ],
             ),
             SizedBox(height: 40.0),
@@ -69,7 +70,7 @@ class _ActorSelectorState extends State<ActorSelector> {
             minWidth: MediaQuery.of(context).size.width - 80,
             onPressed: action,
             child: Text(
-              label,
+              AppTranslations.of(context).text(label),
               textAlign: TextAlign.center,
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -93,32 +94,32 @@ class _ActorSelectorState extends State<ActorSelector> {
   // Helper Functions
 
   void signIn() async {
+    var actor = "None";
     await ActorSelectorController.setActor(_actor).then((value) {
+      if (_actor == globals.SelectedActor.JobProvider)
+        actor = "JobProvider";
+      else
+        actor = "JobSeeker";
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => UserLogin()),
+        MaterialPageRoute(builder: (context) => UserLogin(actor)),
       );
     });
   }
 
   void signUp() async {
     if (_actor == globals.SelectedActor.JobProvider) {
-      await ActorSelectorController.setActor(_actor).then((value) {
-        print("calling User reg...");
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => UserRegistration()),
-        );
-      });
+      print("calling User reg...");
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => UserRegistration()),
+      );
     } else {
-      // TODO: Change the route particular to actor
-      await ActorSelectorController.setActor(_actor).then((value) {
-        print("calling Seeker reg...");
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => SeekerRegistration()),
-        );
-      });
+      print("calling Seeker reg...");
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SeekerRegistration()),
+      );
     }
   }
 }

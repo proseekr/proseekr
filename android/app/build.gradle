@@ -38,7 +38,7 @@ android {
 
     defaultConfig {
         applicationId "com.proseekr"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 28
         multiDexEnabled true
         versionCode flutterVersionCode.toInteger()

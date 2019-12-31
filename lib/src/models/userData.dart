@@ -10,33 +10,29 @@ class ProviderData {
   String _state = "";
   String _pincode = "";
   String _contact = "";
+  String _password = "";
   String _email = "";
   String _imageURL = "";
   String _documentURL = "";
   String get imageURL => _imageURL;
   File _imageFile;
 
-  @override
-  String toString() {
-    return 'userData{'
-        '_firstName: $_firstName,'
-        '_lastName: $_lastName,'
-        '_gender: $_gender,'
-        ' _storeName: $_storeName,'
-        ' _addressLine: $_addressLine,'
-        ' _city: $_city,'
-        ' _state: $_state,'
-        ' _pincode: $_pincode,'
-        ' _contact: $_contact,'
-        ' _email: $_email,'
-        ' _imageURL: $_imageURL,'
-        ' _documentURL: $_documentURL'
-        '}';
+  String get password => _password;
+
+  void setPassword(String value) {
+    _password = value;
   }
+
+
 
   String get firstName => _firstName;
 
   String get lastName => _lastName;
+
+  @override
+  String toString() {
+    return 'ProviderData{_firstName: $_firstName, _lastName: $_lastName, _gender: $_gender, _storeName: $_storeName, _addressLine: $_addressLine, _city: $_city, _state: $_state, _pincode: $_pincode, _contact: $_contact, _password: $_password, _email: $_email, _imageURL: $_imageURL, _documentURL: $_documentURL, _imageFile: $_imageFile}';
+  }
 
   File get imageFile => _imageFile;
 
@@ -89,12 +85,19 @@ class ProviderData {
 
   void setDocumentURL(String value) => _documentURL = value;
 }
-
 class SeekerData {
   String _firstName = "";
   String _lastName = "";
   String _gender = "";
   String _contact = "";
+  String _password = "";
+
+  String get password => _password;
+
+  void setPassword(String value) {
+    _password = value;
+  }
+
   String _email = "";
   String _addressLine = "";
   String _city = "";

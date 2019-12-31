@@ -5,6 +5,8 @@ import 'package:proseekr/src/i18n/application.dart';
 import 'package:proseekr/src/views/actorSelector.dart';
 import 'package:proseekr/src/widgets/app_description.dart';
 import 'package:proseekr/src/widgets/app_title.dart';
+import 'package:proseekr/src/widgets/hero_image.dart';
+import 'package:proseekr/src/widgets/vertical_space24.dart';
 
 class LanguagePreferences extends StatefulWidget {
   LanguagePreferences({Key key}) : super(key: key);
@@ -21,7 +23,6 @@ class _LanguagePreferencesState extends State<LanguagePreferences> {
   final Map<dynamic, dynamic> languagesMap = {
     languagesList[0]: languageCodesList[0],
     languagesList[1]: languageCodesList[1],
-    languagesList[2]: languageCodesList[2],
   };
 
   final List<String> _availableLanguages =
@@ -29,36 +30,10 @@ class _LanguagePreferencesState extends State<LanguagePreferences> {
 
   String _preferredLangState, _lastChosenLanguage;
 
-  void helper() {
-    print('Initializing LanguagePreferrences class...');
-    _preferredLangState = LanguagePreferencesController.getPrefLang();
-    print("$_preferredLangState has been set as preferred languauge.");
-    if (_preferredLangState == null)
-      _preferredLangState = 'English is the default lang';
-  }
-
   @override
   void initState() {
     helper();
     super.initState();
-  }
-
-  void _updatePrefLangState(String prefLang) async {
-    _lastChosenLanguage = LanguagePreferencesController.getPrefLang();
-    await LanguagePreferencesController.setPrefLang(prefLang);
-    print('c: $prefLang, l: $_lastChosenLanguage');
-
-    if (prefLang == _lastChosenLanguage) {
-      setState(() {
-        _preferredLangState = '$prefLang is selected lang';
-      });
-      print('In if-block');
-    } else {
-      setState(() {
-        _preferredLangState = '$prefLang is now your default lang';
-      });
-      print('In else-block');
-    }
   }
 
   @override
@@ -70,40 +45,22 @@ class _LanguagePreferencesState extends State<LanguagePreferences> {
       _lastChosenLanguage =
           _preferredLangState == null ? 'English' : _preferredLangState;
     }
-//    if (_preferredLangState != null) {
-//      return Scaffold(
-//        backgroundColor: Colors.black,
-//        body: Center(
-//            child: Text(
-//          'Test Scaffold',
-//          style: TextStyle(color: Colors.white),
-//        )),
-//      );
-//    } else {
+
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Image.asset(
-              'assets/images/workers_at_construction_site_lq.jpg',
-            ),
-            SizedBox(
-              height: 24.0,
-            ),
+            HeroImage(),
+            VerticalSpace24(),
             AppTitle(),
             AppDescription(),
-            SizedBox(
-              height: 24.0,
-            ),
+            VerticalSpace24(),
             Text(
               AppTranslations.of(context).text("select_your_language"),
               style: TextStyle(fontSize: 24),
             ),
-            SizedBox(
-              height: 8.0,
-            ),
+            SizedBox(height: 8.0),
             Text(
               _preferredLangState ?? '',
               style: TextStyle(fontSize: 18),
@@ -150,5 +107,31 @@ class _LanguagePreferencesState extends State<LanguagePreferences> {
       ),
     );
   }
-//  }
+
+  void helper() {
+    print('Initializing LanguagePreferrences class...');
+//    _preferredLangState = LanguagePreferencesController.getPrefLang();
+    print("$_preferredLangState has been set as preferred languauge.");
+//    if (_preferredLangState == null)
+//      _preferredLangState = 'English is the default lang';
+  }
+
+  void _updatePrefLangState(String prefLang) async {
+    _lastChosenLanguage = LanguagePreferencesController.getPrefLang();
+    await LanguagePreferencesController.setPrefLang(prefLang);
+    print('c: $prefLang, l: $_lastChosenLanguage');
+
+    // TODO: Don't show the selected language as the In-App feature is taking care-of
+//    if (prefLang == _lastChosenLanguage) {
+//      setState(() {
+//        _preferredLangState = '$prefLang is selected lang';
+//      });
+//      print('In if-block');
+//    } else {
+//      setState(() {
+//        _preferredLangState = '$prefLang is now your default lang';
+//      });
+//      print('In else-block');
+//    }
+  }
 }
