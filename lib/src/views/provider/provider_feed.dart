@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:proseekr/src/TTs.dart';
+import 'package:proseekr/src/controllers/tts_controller.dart';
 import 'package:proseekr/src/models/globals.dart' as globals;
 
 import 'HamDraw.dart';
@@ -395,7 +395,7 @@ class _ProviderFeedState extends State<ProviderFeed> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
                                       children: <Widget>[
-                                        Tts(formatString(index)),
+                                        TtsController(formatString(index)),
                                         SizedBox(
                                           width: 8.0,
                                         ),
@@ -501,6 +501,7 @@ class _ProviderFeedState extends State<ProviderFeed> {
                               ],
                             ),
                             ExpansionTile(
+                              title: Text("Detail"),
                               children: <Widget>[
                                 Column(
                                   children: <Widget>[

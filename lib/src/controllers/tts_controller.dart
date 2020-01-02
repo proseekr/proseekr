@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:proseekr/src/controllers/languagePreferencesController.dart';
+import 'package:proseekr/src/controllers/language_preferences_controller.dart';
 
 class Tts extends StatefulWidget {
   String text;

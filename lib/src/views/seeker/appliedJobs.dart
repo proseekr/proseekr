@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'jobs.dart';
+
 import '../../models/globals.dart' as globals;
+import 'jobs.dart';
 
 class AppliedJobs extends StatefulWidget {
-  String user=globals.userId;
+  final String user = globals.userId;
 
   @override
   _AppliedJobsState createState() => _AppliedJobsState();

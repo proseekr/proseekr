@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:proseekr/src/TTs.dart';
+import 'package:proseekr/src/controllers/tts_controller.dart';
 import 'package:proseekr/src/i18n/app_translations.dart';
 
 class JobsUI extends StatelessWidget {
@@ -62,7 +62,7 @@ class JobsUI extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
                                 children: <Widget>[
-                                  Tts(formatString(context, index)),
+                                  TtsController(formatString(context, index)),
                                   SizedBox(
                                     width: 8.0,
                                   ),

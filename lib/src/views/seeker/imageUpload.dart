@@ -6,7 +6,7 @@
 //import 'package:flutter/widgets.dart';
 //import 'package:image_cropper/image_cropper.dart';
 //import 'package:image_picker/image_picker.dart';
-//import 'package:proseekr/src/controllers/actorSelectorController.dart';
+//import 'package:proseekr/src/controllers/actor_selection_controller.dart';
 //import 'package:proseekr/src/models/globals.dart' as globals;
 //import 'package:proseekr/src/views/job_provider/userLogin.dart';
 //import 'package:firebase_messaging/firebase_messaging.dart';
