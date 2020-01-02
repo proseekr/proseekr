@@ -1,4 +1,4 @@
-# ProSeekr v1.0.1
+# ProSeekr v1.0.1 [![Codemagic build status](https://api.codemagic.io/apps/5e0e31dd3c4b5700144a6f7e/5e0e31dd3c4b5700144a6f7d/status_badge.svg)](https://codemagic.io/apps/5e0e31dd3c4b5700144a6f7e/5e0e31dd3c4b5700144a6f7d/latest_build)
 
 A bi-lingugal job portal for blue-collars.
 
