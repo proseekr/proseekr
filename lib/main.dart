@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proseekr/app.dart';
 
 void main() {
-  print("App started");
+  print("App started"); //TODO: Remove logs
   WidgetsFlutterBinding.ensureInitialized();
   runApp(App());
 }
