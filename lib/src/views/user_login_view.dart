@@ -4,7 +4,7 @@ import 'package:keyboard_avoider/keyboard_avoider.dart';
 import 'package:proseekr/src/i18n/app_translations.dart';
 import 'package:proseekr/src/models/globals.dart' as globals;
 import 'package:proseekr/src/views/provider/provider_feed.dart';
-import 'package:proseekr/src/views/seeker/homefeed_view.dart';
+import 'package:proseekr/src/views/seeker/seeker_feed.dart';
 
 class UserLogin extends StatefulWidget {
   final String actor;
