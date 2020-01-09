@@ -2,8 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:proseekr/src/controllers/tts_controller.dart';
 import 'package:proseekr/src/models/globals.dart' as globals;
-
-import 'HamDraw.dart';
+import 'package:proseekr/src/views/provider/app_drawer_view.dart';
 
 enum ConfirmAction { CANCEL, ACCEPT }
 
@@ -20,32 +19,15 @@ class ApplicantList extends StatefulWidget {
 class _ApplicantListState extends State<ApplicantList> {
   String user = globals.userId;
   static CollectionReference ref = Firestore.instance.collection("Seeker");
-//  static List<DocumentSnapshot> data;
-////  List<DocumentSnapshot> filteredData = new List<DocumentSnapshot>();
-//  List<DocumentSnapshot> filteredData = new List<DocumentSnapshot>();
-//  static Query q = ref;
   bool confirm = false;
-//  QuerySnapshot querySnapshot;
 
   @override
   void initState() {
-    print("init called");
-    print(widget.applicant.length);
+    print("init called"); //TODO: Remove logs
+    print(widget.applicant.length); //TODO: Remove logs
     super.initState();
-//    _getData();
   }
 
-//  void _getData() async {
-//    print("jobs initstate");
-//    Query q = ref;
-//    QuerySnapshot querySnapshot = await q.getDocuments();
-//    data = querySnapshot.documents;
-//    for(var i=0;i< data.length; i++){
-//      if(widget.applicant.contains(data[i].documentID)){
-//        filteredData.add(data[i]);
-//      }
-//    }
-//  }
   Future<ConfirmAction> _asyncConfirmDialog(BuildContext context) async {
     return showDialog<ConfirmAction>(
       context: context,
@@ -56,14 +38,14 @@ class _ApplicantListState extends State<ApplicantList> {
           content: const Text('Click on Accept to approve.'),
           actions: <Widget>[
             FlatButton(
-              child: const Text('CANCEL'),
+              child: const Text('Decline'),
               onPressed: () {
                 confirm = false;
                 Navigator.of(context).pop(ConfirmAction.CANCEL);
               },
             ),
             FlatButton(
-              child: const Text('ACCEPT'),
+              child: const Text('Accept'),
               onPressed: () {
                 confirm = true;
                 Navigator.of(context).pop(ConfirmAction.ACCEPT);
@@ -76,7 +58,7 @@ class _ApplicantListState extends State<ApplicantList> {
   }
 
   Future<void> removeFromApplicants(String userId) async {
-    print("removing applicant from array");
+    print("Removing applicant from array"); //TODO: Remove logs
     await Firestore.instance
         .collection("Jobs")
         .document(widget.jobID)
@@ -90,7 +72,7 @@ class _ApplicantListState extends State<ApplicantList> {
     await _asyncConfirmDialog(context);
     if (confirm) {
       setState(() {
-        print("removing card");
+        print("removing card"); //TODO: Remove logs
         widget.applicant = List.from(widget.applicant)..removeAt(index);
       });
       await ref.document(userId).updateData({
@@ -118,12 +100,12 @@ class _ApplicantListState extends State<ApplicantList> {
           title: new Text("Applicants list"),
           backgroundColor: Colors.black,
         ),
-        drawer: HamDraw(),
+        drawer: AppDrawer(),
         body: ListView.builder(
             itemCount: widget.applicant.length,
             itemBuilder: (context, index) {
-              print(widget.applicant.length);
-              print('Here ${widget.applicant[index].data}');
+              print(widget.applicant.length); //TODO: Remove logs
+              print('Here ${widget.applicant[index].data}'); //TODO: Remove logs
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(children: <Widget>[
@@ -131,13 +113,6 @@ class _ApplicantListState extends State<ApplicantList> {
                       child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-//                          ListTile(
-//                            title: Text(widget.applicant[index]["basic_details"]
-//                                    ["first_name"] +
-//                                " " +
-//                                widget.applicant[index]["basic_details"]
-//                                    ["last_name"]),
-//                          ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
@@ -176,12 +151,6 @@ class _ApplicantListState extends State<ApplicantList> {
                               widget.applicant[index]["basic_details"]
                                   ["gender"]),
                         ),
-//                        Padding(
-//                          padding: const EdgeInsets.symmetric(horizontal: 15),
-//                          child: Text("Email :" +" "+
-//                              widget.applicant[index]["basic_details"]
-//                                  ["email"]),
-//                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                           child: Text("Contact:" +
@@ -195,20 +164,6 @@ class _ApplicantListState extends State<ApplicantList> {
                         leading: Icon(Icons.description),
                         title: Text("More details"),
                         children: <Widget>[
-//                          Row(
-//                            children: <Widget>[
-//                              Padding(
-////                                leading: Icon(Icons.description),
-//                                child:  Text("Basic Qualification", style: TextStyle(fontWeight: FontWeight.bold)),
-//                              ),
-//                              Padding(
-//                              child: Text(
-//                                    widget.applicant[index]["basic_qualification"],style: TextStyle(
-//                                    fontSize: 15.0, color: Colors.black),),
-//                              ),
-//                            ],
-//                          ),
-
                           Column(children: <Widget>[
                             Row(
                               children: <Widget>[
@@ -308,7 +263,6 @@ class _ApplicantListState extends State<ApplicantList> {
                                         widget.applicant[index].documentID
                                             .toString(),
                                         index);
-//                                      Navigator.pop(context,index.toString()+" "+ widget.jobID);
                                   })
                             ],
                           )
