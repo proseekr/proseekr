@@ -44,36 +44,38 @@ class _InboxState extends State<Inbox> {
   Widget build(BuildContext context) {
     print(widget.role); // TODO: Remove logs
     return WillPopScope(
-        onWillPop: () async => false,
-        child: Scaffold(
-            appBar: AppBar(
-              title: Text(
-                AppTranslations.of(context).text("Notification"),
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-              backgroundColor: Colors.black,
-              actions: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.notifications_none, color: Colors.grey),
-                  onPressed: null,
-                ),
-              ],
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            AppTranslations.of(context).text("Notification"),
+            style: TextStyle(
+              color: Colors.white,
             ),
-            drawer: widget.role == "Provider"
-                ? JPHamDraw.AppDrawer()
-                : JSHamDraw.AppDrawer(),
-            body: _isLoading == true
+          ),
+          backgroundColor: Colors.black,
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.notifications_none, color: Colors.grey),
+              onPressed: null,
+            ),
+          ],
+        ),
+        drawer: widget.role == "Provider"
+            ? JPHamDraw.AppDrawer()
+            : JSHamDraw.AppDrawer(),
+        body: _isLoading == true
+            ? Center(
+                child:
+                    Text(AppTranslations.of(context).text("loading") + "..."),
+              )
+            : (ds != null || ds.data["messages"].length == 0
                 ? Center(
-                    child: Text(
-                        AppTranslations.of(context).text("loading") + "..."),
+                    child: Text(AppTranslations.of(context)
+                        .text("no new notifications")),
                   )
-                : (ds != null || ds.data["messages"].length == 0
-                    ? Center(
-                        child: Text(AppTranslations.of(context)
-                            .text("no new notifications")),
-                      )
-                    : NotificationCardBuilder(ds.data["messages"]))));
+                : NotificationCardBuilder(ds.data["messages"])),
+      ),
+    );
   }
 }
