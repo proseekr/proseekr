@@ -3,7 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:keyboard_avoider/keyboard_avoider.dart';
 import 'package:proseekr/src/i18n/app_translations.dart';
 import 'package:proseekr/src/models/globals.dart' as globals;
-import 'package:proseekr/src/views/provider/imageUpload.dart';
+import 'package:proseekr/src/views/provider/image_upload_view.dart';
 
 class UserRegistration extends StatefulWidget {
   UserRegistration({Key key, this.title}) : super(key: key);
@@ -86,7 +86,6 @@ class _UserRegistrationState extends State<UserRegistration> {
     }
 
     void _showDialog() {
-      // flutter defined function
       Fluttertoast.showToast(
           msg: "Please enter all the fields",
           toastLength: Toast.LENGTH_LONG,
