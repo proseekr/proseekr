@@ -1,6 +1,6 @@
 # ProSeekr v1.0.1 [![Codemagic build status](https://api.codemagic.io/apps/5e0e31dd3c4b5700144a6f7e/5e0e31dd3c4b5700144a6f7d/status_badge.svg)](https://codemagic.io/apps/5e0e31dd3c4b5700144a6f7e/5e0e31dd3c4b5700144a6f7d/latest_build)
 
-A bi-lingual communication platform for blue-collars job seekers and providers.
+A bi-lingual communication platform for blue-collar job seekers and providers.
 
 ### Features
 - Bi-lingual support (Hindi and English)
@@ -21,5 +21,5 @@ A bi-lingual communication platform for blue-collars job seekers and providers.
 ### Maintainer(s)
 [Moses](https://github.com/devmoses)
 
-### Contribution and Queries/Issues
+### For queries and issues
 b4di.ggl20@gmail.com
