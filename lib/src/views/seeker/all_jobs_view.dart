@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:proseekr/src/i18n/app_translations.dart';
 import 'package:proseekr/src/models/globals.dart' as globals;
-import 'package:proseekr/src/views/seeker/JobsUI.dart';
 import 'package:proseekr/src/views/seeker/app_drawer_view.dart';
+import 'package:proseekr/src/views/seeker/jobs_view_handler.dart';
 import 'package:proseekr/src/views/user_inbox_view.dart';
 
 class Jobs extends StatefulWidget {
