@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:proseekr/src/models/globals.dart' as globals;
 import 'package:proseekr/src/views/seeker/all_jobs_view.dart';
 
-int len;
-
 class HomePage extends StatefulWidget {
   final String user = globals.userId;
 
