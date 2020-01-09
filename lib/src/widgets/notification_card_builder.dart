@@ -4,8 +4,6 @@ class NotificationCardBuilder extends StatelessWidget {
   final data;
   NotificationCardBuilder(this.data);
 
-  // final notifications = data;
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -19,7 +17,6 @@ class NotificationCardBuilder extends StatelessWidget {
   Widget buildCard(String subject, String description) {
     return Card(
       color: Colors.white,
-//      margin: EdgeInsets.only(top: 8.0, right: 16.0, bottom: 8.0, left: 16.0),
       elevation: 4.0,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
