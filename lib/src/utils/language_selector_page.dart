@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proseekr/src/i18n/app_translations.dart';
 import 'package:proseekr/src/i18n/application.dart';
-import 'package:proseekr/src/i18n/test_page.dart';
+import 'package:proseekr/src/views/actor_selection_view.dart';
 
 class LanguageSelectorPage extends StatefulWidget {
   @override
@@ -32,8 +32,8 @@ class _LanguageSelectorPageState extends State<LanguageSelectorPage> {
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.arrow_forward_ios),
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => TestPage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ActorSelector()));
           },
         ),
       ),
@@ -52,7 +52,7 @@ class _LanguageSelectorPageState extends State<LanguageSelectorPage> {
   _buildLanguageItem(String language) {
     return InkWell(
       onTap: () {
-        print(language);
+        print(language); //TODO: Remove logs
         application.onLocaleChanged(Locale(languagesMap[language]));
       },
       child: Center(
