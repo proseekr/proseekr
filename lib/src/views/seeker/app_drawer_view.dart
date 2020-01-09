@@ -6,7 +6,7 @@ import 'package:proseekr/src/views/app_settings_view.dart';
 import 'package:proseekr/src/views/seeker/applied_jobs_view.dart';
 import 'package:proseekr/src/views/seeker/approved_jobs_view.dart';
 import 'package:proseekr/src/views/seeker/favourite_jobs_view.dart';
-import 'package:proseekr/src/views/seeker/homefeed_view.dart';
+import 'package:proseekr/src/views/seeker/seeker_feed.dart';
 import 'package:proseekr/src/views/user_inbox_view.dart';
 
 class AppDrawer extends StatefulWidget {
