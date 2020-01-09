@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:proseekr/src/controllers/actorSelectorController.dart';
-import 'package:proseekr/src/controllers/languagePreferencesController.dart';
+import 'package:proseekr/src/controllers/actor_selection_controller.dart';
+import 'package:proseekr/src/controllers/language_preferences_controller.dart';
 import 'package:proseekr/src/i18n/app_translations_delegate.dart';
 import 'package:proseekr/src/i18n/application.dart';
 import 'package:proseekr/src/models/globals.dart' as globals;
@@ -11,14 +11,15 @@ var appToRun = LanguagePreferences();
 
 // TODO: Change the context, when the app is resumed from background
 void checkPreferences() {
-  print("Looking for preferred langauge...");
+  print("Looking for preferred langauge..."); //TODO: Remove logs
   if (LanguagePreferencesController.isPrefLangSet() &&
       ActorSelectorController.getActor() != globals.SelectedActor.None) {
-    print('Found preferred language, navigating to homescreen');
+    print(
+        'Found preferred language, navigating to homescreen'); //TODO: Remove logs
 //    appToRun = ActorSelector();
   } else {
     print(
-        'Didn\'t find preferred languauge, capture preferred languauge from the user.');
+        'Didn\'t find preferred languauge, capture preferred languauge from the user.'); //TODO: Remove logs
     appToRun = LanguagePreferences();
   }
 }
@@ -41,7 +42,7 @@ class _ProSeekerAppState extends State<ProSeekerApp> {
   @override
   Widget build(BuildContext context) {
 //    checkPreferences();
-    print("Building application...");
+    print("Building application..."); //TODO: Remove logs
     return MaterialApp(
       title: 'ProSeekr',
       debugShowCheckedModeBanner: false,
@@ -54,6 +55,7 @@ class _ProSeekerAppState extends State<ProSeekerApp> {
       supportedLocales: [
         const Locale("en", ""),
         const Locale("hi", ""),
+        const Locale("te", ""),
       ],
     );
   }
