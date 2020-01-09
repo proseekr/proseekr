@@ -5,7 +5,7 @@ import 'package:proseekr/src/controllers/language_preferences_controller.dart';
 import 'package:proseekr/src/i18n/app_translations_delegate.dart';
 import 'package:proseekr/src/i18n/application.dart';
 import 'package:proseekr/src/models/globals.dart' as globals;
-import 'package:proseekr/src/views/languagePreferences.dart';
+import 'package:proseekr/src/views/language_preferences_view.dart';
 
 var appToRun = LanguagePreferences();
 
