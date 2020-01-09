@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:proseekr/src/controllers/languagePreferencesController.dart';
+import 'package:proseekr/src/controllers/language_preferences_controller.dart';
 import 'package:proseekr/src/i18n/app_translations.dart';
 import 'package:proseekr/src/i18n/application.dart';
-import 'package:proseekr/src/views/actorSelector.dart';
+import 'package:proseekr/src/views/actor_selection_view.dart';
 import 'package:proseekr/src/widgets/app_description.dart';
 import 'package:proseekr/src/widgets/app_title.dart';
 import 'package:proseekr/src/widgets/hero_image.dart';
-import 'package:proseekr/src/widgets/vertical_space24.dart';
 
 class LanguagePreferences extends StatefulWidget {
   LanguagePreferences({Key key}) : super(key: key);
@@ -38,10 +37,10 @@ class _LanguagePreferencesState extends State<LanguagePreferences> {
 
   @override
   Widget build(BuildContext context) {
-    print('Building LanguagePreferences context...');
+    print('Building LanguagePreferences context...'); //TODO: Remove logs
     if (mounted == true) {
       print(
-          "LangaugePreferences::BuildContext is assinged to CreateState() and attached to widget tree.");
+          "LangaugePreferences::BuildContext is assinged to CreateState() and attached to widget tree."); //TODO: Remove logs
       _lastChosenLanguage =
           _preferredLangState == null ? 'English' : _preferredLangState;
     }
@@ -52,10 +51,10 @@ class _LanguagePreferencesState extends State<LanguagePreferences> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             HeroImage(),
-            VerticalSpace24(),
+            SizedBox(height: 24),
             AppTitle(),
             AppDescription(),
-            VerticalSpace24(),
+            SizedBox(height: 24.0),
             Text(
               AppTranslations.of(context).text("select_your_language"),
               style: TextStyle(fontSize: 24),
@@ -109,9 +108,10 @@ class _LanguagePreferencesState extends State<LanguagePreferences> {
   }
 
   void helper() {
-    print('Initializing LanguagePreferrences class...');
+    print('Initializing LanguagePreferrences class...'); //TODO: Remove logs
 //    _preferredLangState = LanguagePreferencesController.getPrefLang();
-    print("$_preferredLangState has been set as preferred languauge.");
+    print(
+        "$_preferredLangState has been set as preferred languauge."); //TODO: Remove logs
 //    if (_preferredLangState == null)
 //      _preferredLangState = 'English is the default lang';
   }
@@ -119,19 +119,19 @@ class _LanguagePreferencesState extends State<LanguagePreferences> {
   void _updatePrefLangState(String prefLang) async {
     _lastChosenLanguage = LanguagePreferencesController.getPrefLang();
     await LanguagePreferencesController.setPrefLang(prefLang);
-    print('c: $prefLang, l: $_lastChosenLanguage');
+    print('c: $prefLang, l: $_lastChosenLanguage'); //TODO: Remove logs
 
     // TODO: Don't show the selected language as the In-App feature is taking care-of
 //    if (prefLang == _lastChosenLanguage) {
 //      setState(() {
 //        _preferredLangState = '$prefLang is selected lang';
 //      });
-//      print('In if-block');
+//      print('In if-block'); //TODO: Remove logs
 //    } else {
 //      setState(() {
 //        _preferredLangState = '$prefLang is now your default lang';
 //      });
-//      print('In else-block');
+//      print('In else-block'); //TODO: Remove logs
 //    }
   }
 }
