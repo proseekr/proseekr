@@ -3,16 +3,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:proseekr/src/controllers/tts_controller.dart';
 import 'package:proseekr/src/models/globals.dart' as globals;
+import 'package:proseekr/src/views/provider/app_drawer_view.dart';
+import 'package:proseekr/src/views/provider/approved_list_view_.dart';
+import 'package:proseekr/src/views/provider/job_applicants_view.dart';
 
-import 'HamDraw.dart';
-import 'approvedList.dart';
-import 'jobParticularApplicants.dart';
-
-//enum ConfirmAction { CANCEL, ACCEPT }
 class ProviderFeed extends StatefulWidget {
-//  ProviderFeed({Key Key, this.user, this.title}) : super(key: Key);
-//  final String title;
-
   @override
   _ProviderFeedState createState() => _ProviderFeedState();
 }
@@ -35,37 +30,22 @@ class _ProviderFeedState extends State<ProviderFeed> {
 
   @override
   void initState() {
-    print("init called" + user);
+    print("init called" + user); //TODO: Remove logs
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
-        print("#onMessage: $message");
-        print("message showed");
-        globals.newMessage = true;
-        print("message showed");
-        //  Navigator.push(
-        //       context,
-        //       MaterialPageRoute(builder: (context) => HomePage()),
-        //     );
-        //_showItemDialog(message);
+        print("#onMessage: $message"); //TODO: Remove logs
+        print("message showed"); //TODO: Remove logs
+        globals.hasNewMessage = true;
+        print("message showed"); //TODO: Remove logs
       },
       onLaunch: (Map<String, dynamic> message) async {
-        print("onLaunch: $message");
-        globals.newMessage = true;
-//        Navigator.push(
-//          context,
-//          MaterialPageRoute(builder: (context) => HomePage()),
-//        );
-        //_navigateToItemDetail(message);
+        print("onLaunch: $message"); //TODO: Remove logs
+        globals.hasNewMessage = true;
       },
       onResume: (Map<String, dynamic> message) async {
-        print("onResume: $message");
-        globals.newMessage = true;
+        print("onResume: $message"); //TODO: Remove logs
+        globals.hasNewMessage = true;
         AlertDialog(content: Text("onResume: $message"));
-//        Navigator.push(
-//          context,
-//          MaterialPageRoute(builder: (context) => HomePage()),
-//        );
-        //_navigateToItemDetail(message);
       },
     );
     super.initState();
@@ -74,39 +54,15 @@ class _ProviderFeedState extends State<ProviderFeed> {
 
   void _getJobs() async {
     var userId = user;
-    print(userId);
+    print(userId); //TODO: Remove logs
     provider =
         await Firestore.instance.collection("Provider").document(userId).get();
-    print("docID " + provider.documentID);
+    print("docID " + provider.documentID); //TODO: Remove logs
     ref = Firestore.instance.collection("Jobs");
   }
 
-//  void _getData() async {
-//    await _getJobs();
-//    jobs = provider.data["Jobs"];
-//    print("provider jobs" + jobs.toString());
-//    print("jobs initstate");
-//    q = Firestore.instance.collection("Jobs");
-//    QuerySnapshot querySnapshot = await q.getDocuments();
-//
-//    data = querySnapshot.documents;
-//    print("total jobs" + data.length.toString());
-//    if (jobs.length == 0) {
-//      data = new List<DocumentSnapshot>();
-//    }
-//    for (var i = 0; i < jobs.length; i++) {
-//      print(jobs[i]);
-//
-//      if (data[i].documentID != jobs[i]) {
-//        data.removeAt(i);
-//      }
-//    }
-//
-//    print(data.length);
-//    setState(() {});
-//  }
   void _getData() async {
-    await _getJobs();
+    _getJobs(); // TODO : Remove await
     jobs = provider.data["Jobs"];
     data = new List();
     for (var i = 0; i < jobs.length; i++) {
@@ -114,14 +70,13 @@ class _ProviderFeedState extends State<ProviderFeed> {
           .collection('Jobs')
           .document(jobs.elementAt(i).toString())
           .get();
-//      print(doc.documentID);
       data.add(doc);
-      print("data" + data[i].documentID);
+      print("data" + data[i].documentID); //TODO: Remove logs
     }
     if (data != null)
-      print(data.length);
+      print(data.length); //TODO: Remove logs
     else
-      print('Empty data');
+      print('Empty data'); //TODO: Remove logs
     setState(() {});
   }
 
@@ -138,7 +93,7 @@ class _ProviderFeedState extends State<ProviderFeed> {
       lastDate: new DateTime(2050),
     );
     setState(() {
-      print(updatedEndDate);
+      print(updatedEndDate); //TODO: Remove logs
     });
   }
 
@@ -183,13 +138,13 @@ class _ProviderFeedState extends State<ProviderFeed> {
             ),
             actions: <Widget>[
               new FlatButton(
-                child: new Text('CANCEL'),
+                child: new Text('Cancel'),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
               ),
               new FlatButton(
-                child: new Text('ACCEPT'),
+                child: new Text('Accept'),
                 onPressed: () {
                   _updateDateHelper(docID, index);
                   setState(() {
@@ -239,14 +194,7 @@ class _ProviderFeedState extends State<ProviderFeed> {
       setState(() {
         data = List.from(data)..removeAt(index);
       });
-      print("deleting job" + jobId);
-//      List<dynamic> applicants =  data[index]["applicants"];
-//      for(var i=0;i < applicants.length; i++) {
-//        await Firestore.instance.collection('Seeker').document(applicants[i])
-//          ..updateData({
-//            "approved": FieldValue.arrayRemove([data[index].documentID]),
-//          });
-//      }
+      print("deleting job" + jobId); //TODO: Remove logs
       await Firestore.instance
           .collection("Provider")
           .document(user)
@@ -266,17 +214,17 @@ class _ProviderFeedState extends State<ProviderFeed> {
 
   Future<void> _getUserData(List applicant) async {
     querySnapshot1 = await q1.getDocuments();
-    data1 = await querySnapshot1.documents;
+    data1 = querySnapshot1.documents; // TODO: Remove await
     filteredData = new List<DocumentSnapshot>();
-    print(applicant.toString());
+    print(applicant.toString()); //TODO: Remove logs
     for (var i = 0; i < data1.length; i++) {
       if (applicant.contains(data1[i].documentID)) {
-        print("Adding to applicants list");
+        print("Adding to applicants list"); //TODO: Remove logs
         filteredData.add(data1[i]);
       }
     }
-    print(filteredData.length);
-    print("filter" + filteredData[0].data.toString());
+    print(filteredData.length); //TODO: Remove logs
+    print("filter" + filteredData[0].data.toString()); //TODO: Remove logs
   }
 
   static CollectionReference ref2 = Firestore.instance.collection("Seeker");
@@ -286,17 +234,17 @@ class _ProviderFeedState extends State<ProviderFeed> {
   List<DocumentSnapshot> approvedData = new List<DocumentSnapshot>();
   Future<void> _getApprovedUserData(List approved) async {
     querySnapshot2 = await q2.getDocuments();
-    data2 = await querySnapshot2.documents;
+    data2 = querySnapshot2.documents; // TODO: Remove await
     approvedData = new List<DocumentSnapshot>();
-    print(approved.toString());
+    print(approved.toString()); //TODO: Remove logs
     for (var i = 0; i < data2.length; i++) {
       if (approved.contains(data2[i].documentID)) {
-        print("herehere");
+        print("herehere"); //TODO: Remove logs
         approvedData.add(data2[i]);
       }
     }
-    print(approvedData.length);
-    print("filter" + approvedData[0].data.toString());
+    print(approvedData.length); //TODO: Remove logs
+    print("filter" + approvedData[0].data.toString()); //TODO: Remove logs
   }
 
   String formatString(int index) {
@@ -315,9 +263,7 @@ class _ProviderFeedState extends State<ProviderFeed> {
 
   @override
   Widget build(BuildContext context) {
-    () async {
-      await _getData();
-    };
+    _getData(); // TODO: Remove await
     if (data.length == 0) {
       return new Scaffold(
           appBar: new AppBar(
@@ -338,7 +284,7 @@ class _ProviderFeedState extends State<ProviderFeed> {
             ],
           ),
           backgroundColor: Colors.white,
-          drawer: HamDraw(),
+          drawer: AppDrawer(),
           body: Center(child: Text('Please upload jobs to continue')));
     } else {
       return new Scaffold(
@@ -360,11 +306,11 @@ class _ProviderFeedState extends State<ProviderFeed> {
             ],
           ),
           backgroundColor: Colors.grey[150],
-          drawer: HamDraw(),
+          drawer: AppDrawer(),
           body: ListView.builder(
               itemCount: data.length,
               itemBuilder: (context, index) {
-//          print('${data[index].data}');
+//          print('${data[index].data}'); //TODO: Remove logs
 //            if (data == null) return new Text('Loading...');
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -374,12 +320,6 @@ class _ProviderFeedState extends State<ProviderFeed> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
-//                            ListTile(
-//                              title: Text(data[index]['title'],
-//                                  style: TextStyle(
-//                                      fontWeight: FontWeight.bold,fontSize: 18.0, color: Colors.black)),
-////                              title: Text(user)
-//                            ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
@@ -667,7 +607,7 @@ class _ProviderFeedState extends State<ProviderFeed> {
                                                 MaterialPageRoute(
                                                     builder: (context) =>
                                                         ApprovedList(
-                                                          Approved:
+                                                          approved:
                                                               approvedData,
                                                           jobID: data[index]
                                                               .documentID,
