@@ -4,8 +4,7 @@ import 'package:proseekr/src/i18n/app_translations.dart';
 import 'package:proseekr/src/models/globals.dart' as globals;
 import 'package:proseekr/src/views/app_settings_view.dart';
 import 'package:proseekr/src/views/seeker/applied_jobs_view.dart';
-import 'package:proseekr/src/views/seeker/approved_jobs_view.dart'
-    show ApprovedJobs;
+import 'package:proseekr/src/views/seeker/approved_jobs_view.dart';
 import 'package:proseekr/src/views/seeker/favourite_jobs_view.dart';
 import 'package:proseekr/src/views/seeker/homefeed_view.dart';
 import 'package:proseekr/src/views/user_inbox_view.dart';
